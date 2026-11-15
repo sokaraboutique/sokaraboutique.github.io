@@ -58,16 +58,12 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:va
 .nav{display:flex;gap:26px;font-size:.93rem}
 .nav a{text-decoration:none;padding-block:6px;border-bottom:1px solid transparent}
 .nav a:hover{border-bottom-color:var(--wine)}
-.hc{display:flex;align-items:center;gap:8px}
-.hc a{display:inline-flex;align-items:center;gap:7px;height:36px;min-width:36px;justify-content:center;border-radius:999px;text-decoration:none;font-size:.82rem;color:var(--wine);border:1px solid var(--line);background:var(--bg);padding:0 9px}
-.hc a svg{width:18px;height:18px;flex:none}
-.hc a.wa-h{background:#25D366;border-color:#25D366;color:#fff}
-.hc .em-t{display:none}
-@media (min-width:1400px){.hc .em-t{display:inline}}
-.lang,.hc,.icon-btn{flex:none}.nav a{white-space:nowrap}
-@media (max-width:1100px){.nav{gap:16px;font-size:.88rem}}
-@media (max-width:440px){.bar{gap:8px}.hc{gap:5px}.hc a{height:32px;min-width:32px;padding:0 7px}.hc a svg{width:16px;height:16px}.brand b{font-size:1.15rem;letter-spacing:.24em;padding-inline-start:.24em}.brand small{font-size:.52rem;letter-spacing:.3em}.brand small::before,.brand small::after{width:12px}.lang button{padding:5px 9px;font-size:.8rem}}
-@media (max-width:400px){.bar{gap:6px}.brand b{font-size:1rem;letter-spacing:.2em;padding-inline-start:.2em}.lang button{padding:4px 7px;font-size:.76rem}.icon-btn{width:34px}.hc a{height:30px;min-width:30px;padding:0 6px}}
+.ct-h{display:none;flex:none;align-items:center;height:34px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--wine);text-decoration:none;font-size:.85rem;font-weight:500}
+@media (max-width:900px){.ct-h{display:inline-flex}}
+.lang,.icon-btn{flex:none}
+@media (max-width:440px){.bar{gap:8px}.brand b{font-size:1.15rem;letter-spacing:.24em;padding-inline-start:.24em}.brand small{font-size:.52rem;letter-spacing:.3em}.brand small::before,.brand small::after{width:12px}.lang button{padding:5px 9px;font-size:.8rem}}
+@media (max-width:400px){.bar{gap:6px}.brand b{font-size:1rem;letter-spacing:.2em;padding-inline-start:.2em}.lang button{padding:4px 7px;font-size:.76rem}.icon-btn{width:34px}}
+@media (max-width:400px){.ct-h{padding:0 9px;font-size:.78rem;height:30px}.lang button{padding:4px 6px}}
 .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--bg)}
 .lang button{border:0;background:none;padding:6px 12px;cursor:pointer;font-size:.85rem;color:var(--muted)}
 .lang button[aria-pressed="true"]{background:var(--wine);color:var(--on-wine)}
@@ -273,10 +269,7 @@ footer{padding-block:28px;color:var(--muted);font-size:.88rem;text-align:center}
       <a href="#fidelite" data-i="nav_fid"></a>
       <a href="#contact" data-i="nav_contact"></a>
     </nav>
-    <div class="hc">
-      <a href="mailto:pharmawithsafira@gmail.com" target="_blank" rel="noopener" class="mail-l" aria-label="Email pharmawithsafira@gmail.com" title="pharmawithsafira@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><span class="em-t">pharmawithsafira@gmail.com</span></a>
-      <a class="wa-h" href="https://wa.me/212662416680" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp 0662 416 680"><svg><use href="#wa"/></svg></a>
-    </div>
+    <a href="#contact" class="ct-h" data-i="nav_contact">Contact</a>
     <div class="lang" role="group" aria-label="Langue">
       <button type="button" id="l-fr" aria-pressed="true">FR</button>
       <button type="button" id="l-ar" aria-pressed="false">عربي</button>
