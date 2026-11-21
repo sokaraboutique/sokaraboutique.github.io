@@ -59,6 +59,14 @@ section{padding-block:56px}
 html[dir="rtl"] .flip{transform:scaleX(-1)}
 
 /* announcement + header */
+.bfsec{padding-block:18px 40px}.bf-ban{display:block;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(42,7,16,.22)}.bf-ban img{display:block;width:100%;height:auto}
+.bfbar a{color:inherit;text-decoration:none}
+.off{position:absolute;left:10px;top:10px;background:var(--wine);color:#E6C99B;border-radius:999px;padding:4px 10px;font-size:.78rem;font-weight:600;z-index:1;box-shadow:0 4px 10px rgba(0,0,0,.18)}
+.bfbar{background:#0B0B0B;color:#E6C99B;font-size:.85rem;font-weight:600;letter-spacing:.03em;text-align:center}.bfbar .wrap{padding-block:9px}
+.stamps span.on{background:var(--wine);color:var(--on-wine);border:0;position:relative}.stamps span.on::after{content:"✓";position:absolute;right:-2px;top:-4px;background:#E6C99B;color:var(--wine);width:18px;height:18px;border-radius:50%;font-size:.7rem;display:grid;place-items:center;font-family:var(--body)}
+.fid-st{display:grid;gap:4px;font-size:.9rem;color:var(--wine)}.fid-st b{font-family:var(--display);font-size:1.3rem}.fid-msg{background:#fff;border-radius:10px;padding:8px 10px;font-size:.88rem}
+.price s.old{color:var(--muted);font-weight:400;font-size:.85em;margin-inline-end:4px}.price .new{color:#B3261E}.pr-badge{align-self:flex-start;margin-top:6px;background:#0B0B0B;color:#E6C99B;border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600}
+.pmsg{font-size:.8rem;margin-top:4px}.pmsg.ok{color:#1E8C4C}.pmsg.bad{color:#B3261E}
 .announce{background:var(--wine);color:var(--on-wine);font-size:.8rem}
 .announce .wrap{display:flex;gap:10px 22px;align-items:center;padding-block:8px;flex-wrap:wrap;justify-content:center}
 .announce span{display:inline-flex;align-items:center;gap:7px}
@@ -270,6 +278,7 @@ footer{padding-block:28px;color:var(--muted);font-size:.88rem;text-align:center}
   <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></symbol>
   <symbol id="bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M5 8h14l-1 12H6L5 8Zm4 0V6a3 3 0 0 1 6 0v2"/></symbol>
 </svg>
+<div class="bfbar" id="bfbar" hidden><div class="wrap"><a href="#blackfriday"><span data-i="bf"></span> ›</a></div></div>
 <div class="announce"><div class="wrap">
   <span data-i="an1"></span><span aria-hidden="true">•</span><span data-i="an2"></span><span aria-hidden="true">•</span><span data-i="an3"></span>
 </div></div>
@@ -293,6 +302,13 @@ footer{padding-block:28px;color:var(--muted);font-size:.88rem;text-align:center}
 </header>
 
 <main id="top">
+  <section id="blackfriday" class="bfsec" hidden>
+    <div class="wrap">
+      <a href="#bf-grid" class="bf-ban"><img src="img4/bf_banner.webp" alt="Black Friday SOKARA : 2 déos = 45 DH, 2 roll-on = 30 DH" width="1200" height="800" fetchpriority="high"></a>
+      <div class="head" id="bf-grid" style="margin-top:28px"><p class="eyebrow" data-i="bf_eye"></p><h2 data-i="bf_h"></h2><p style="color:var(--muted)" data-i="bf_p"></p></div>
+      <div class="grid" id="bfGrid"></div>
+    </div>
+  </section>
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-text">
@@ -423,10 +439,11 @@ footer{padding-block:28px;color:var(--muted);font-size:.88rem;text-align:center}
     <div class="wrap loyal">
       <div class="card-fid">
         <div class="top"><img src="img2/logo.webp" alt=""><div><b>SOKARA</b><div style="opacity:.8;font-size:.85rem" data-i="fid_card"></div></div></div>
-        <div class="stamps" aria-hidden="true">
+        <div class="stamps" id="stamps" aria-hidden="true">
           <span>1</span><span>2</span><span>3</span><span>4</span><span class="gift" data-i="gift"></span>
           <span>6</span><span>7</span><span>8</span><span>9</span><span class="gift">-10%</span>
         </div>
+        <div class="fid-st" id="fidSt"></div>
       </div>
       <div>
         <p class="eyebrow" data-i="fid_eye"></p>
@@ -496,6 +513,14 @@ const DELIVERY = { agadir: 15, other: 35 };
 const PACK = new Set(["v_mela","v_biotin","v_maenner","v_female","amp_hya","vz","vmg","vmu","vfe","vb12","vca","vmm","vim","vc","cap_aug","cap_ret","cap_q10","cap_hya","cap_vitc"]);
 const NEW_IN = ["kb18","vg4","kb1","kb12","hb2","rv1","pc1","hb7","r1","r3","p1","f3","l10","l8","r4","sh1","f2","l3","b3","b1","b5","b4","b2","cap5","cap2","cap4","l1","p3","k2","h1","cap3","cap1"];
 const BOX_DISCOUNT = 0.10, BOX_MIN = 5;
+const SPRAY_IDS = ["dd1", "dd2", "dd3", "dd4", "dd5", "dd10", "dd11", "dd12", "dd13", "dd14", "dd20", "dd21", "dd22"], ROLL_IDS = ["dd15", "dd16", "dd17", "dd18", "dd19", "ro1", "ro2"];
+const BF_END = new Date("2027-01-01T00:00:00+01:00");
+const FID_CODE = "SOKARA10";
+const PROMO = {}; // id -> [old price, bundle price for 2 or 0]
+const OLDP = {"hs1": 45, "hs2": 45, "hs4": 45, "mh4": 45, "hc1": 29, "hc2": 29, "hc3": 29, "hc4": 29, "hc5": 29, "hc6": 29, "hc7": 29, "hc8": 45, "ng1": 29, "ng4": 29, "ng5": 45, "ng6": 45, "v1": 20, "v2": 20, "v3": 20, "v4": 20, "v5": 20, "v6": 20, "v7": 20, "v8": 20, "v9": 20, "lb1": 19, "lb3": 19, "lb4": 19, "lb5": 19};
+const BF_PACKS = {pc1:139, rv1:125, rv2:125, k7:199, k8:209, k2:199, kb1:159, k4:239, k5:229, kb18:249, fi1:199, fi2:219, fi3:199, fi4:199, fi5:499};
+const FREE_SHIP = 350;
+const promoOn = () => new Date() < BF_END;
 
 const IMG = {aloe:"img1/aloe.webp",selfcare:"img3/selfcare.webp",almond:"img1/almond.webp",red:"img3/red.webp",berry:"img1/berry.webp",curls:"img1/curls.webp",sensitive:"img3/sensitive.webp",vanilla:"img4/vanilla.webp",lemon:"img2/lemon.webp",purple:"img3/purple.webp",cap_aug:"img1/cap_aug.webp",v_mela:"img4/v_mela.webp",fp_feel:"img1/fp_feel.webp",d_trio:"img1/d_trio.webp",v_multi:"img4/v_multi.webp",k_dalba:"img2/k_dalba.webp",pe_sugar:"img3/pe_sugar.webp",mk_matcha:"img3/mk_matcha.webp",ns_charb:"img3/ns_charb.webp",pt_pickel:"img3/pt_pickel.webp",mm_gel:"img3/mm_gel.webp",ro_mdry:"img3/ro_mdry.webp",mh_pads:"img2/mh_pads.webp",ro_msens:"img3/ro_msens.webp",fi_box:"img1/fi_box.webp",k_anua:"img2/k_anua.webp",k_345:"img2/k_345.webp",k_celi:"img2/k_celi.webp",k_147:"img2/k_147.webp",k_jelly:"img2/k_jelly.webp",k_pdcream:"img2/k_pdcream.webp",k_pdserum:"img2/k_pdserum.webp",k_glow:"img2/k_glow.webp",k_axis:"img2/k_axis.webp",k_snail:"img2/k_snail.webp",mh_cream:"img2/mh_cream.webp",mh_mask:"img2/mh_mask.webp",as_sens:"img1/as_sens.webp",msh_sens:"img3/msh_sens.webp",msh_fresh:"img3/msh_fresh.webp",rg_fresh:"img3/rg_fresh.webp",kb_pads:"img2/kb_pads.webp",kb_pdrn:"img2/kb_pdrn.webp",kb_dewy:"img2/kb_dewy.webp",kb_rice:"img2/kb_rice.webp",kb_body:"img2/kb_body.webp",kb_uv:"img2/kb_uv.webp",kb_mochi:"img2/kb_mochi.webp",kb_bio:"img2/kb_bio.webp",kb_cosrx:"img2/kb_cosrx.webp",kb_kojic:"img2/kb_kojic.webp",kb_mfoam:"img2/kb_mfoam.webp",kb_mpink:"img2/kb_mpink.webp",kb_zpad:"img2/kb_zpad.webp",kb_bojaqua:"img2/kb_bojaqua.webp",kb_bojrice:"img2/kb_bojrice.webp",fi_mask:"img1/fi_mask.webp",fi_sh:"img1/fi_sh.webp",fi_oil:"img1/fi_oil.webp",fi_co:"img1/fi_co.webp",gs_box:"img2/gs_box.webp",hp_pink:"img2/hp_pink.webp",ts_moon:"img4/ts_moon.webp",ts_cotton:"img4/ts_cotton.webp",ts_glam:"img4/ts_glam.webp",hp_braz:"img2/hp_braz.webp",fs_aloe:"img1/fs_aloe.webp",tn_pfl:"img4/tn_pfl.webp",tn_feu:"img4/tn_feu.webp",tn_med:"img4/tn_med.webp",pk_almond:"img3/pk_almond.webp",pk_aloe:"img3/pk_aloe.webp",pk_glam:"img3/pk_glam.webp",pk_velvet:"img3/pk_velvet.webp",amp_hya:"img1/amp_hya.webp",pk_wachs:"img3/pk_wachs.webp",pk_oil:"img3/pk_oil.webp",pk_hydra:"img3/pk_hydra.webp",v_biotin:"img4/v_biotin.webp",v_maenner:"img4/v_maenner.webp",v_female:"img4/v_female.webp",gs_sh:"img2/gs_sh.webp",gs_spray:"img2/gs_spray.webp",gs_serum:"img2/gs_serum.webp",gs_co:"img2/gs_co.webp",pk_keratin:"img3/pk_keratin.webp",rs_cotton:"img3/rs_cotton.webp",rz_2w:"img3/rz_2w.webp",rz_3:"img3/rz_3.webp",rz_men:"img3/rz_men.webp",rsm_sens:"img3/rsm_sens.webp",rsm_fresh:"img3/rsm_fresh.webp",as_fresh:"img1/as_fresh.webp",rs_violet:"img3/rs_violet.webp",rg_med:"img3/rg_med.webp",wg_med:"img4/wg_med.webp",ps_mild:"img3/ps_mild.webp",pg_aloe:"img3/pg_aloe.webp",sh_farb:"img3/sh_farb.webp",co_farb:"img1/co_farb.webp",co_lock:"img1/co_lock.webp",bs_glam:"img1/bs_glam.webp",bs_van:"img1/bs_van.webp",bs_velvet:"img1/bs_velvet.webp",bl_comfort:"img1/bl_comfort.webp",bl_velvet:"img1/bl_velvet.webp",bc_van2:"img1/bc_van2.webp",mk_ring75:"img3/mk_ring75.webp",bl_mandel:"img1/bl_mandel.webp",bl_glam:"img1/bl_glam.webp",bl_kirsch:"img1/bl_kirsch.webp",bl_softoel:"img1/bl_softoel.webp",mk_ring250:"img3/mk_ring250.webp",bc_shea:"img1/bc_shea.webp",cr_pflege:"img1/cr_pflege.webp",cr_soft:"img1/cr_soft.webp",fc_int:"img1/fc_int.webp",fc_nagel:"img1/fc_nagel.webp",g_roses:"img1/g_roses.webp",fc_med:"img1/fc_med.webp",wg_150:"img4/wg_150.webp",wg_pickel:"img4/wg_pickel.webp",wc_sanft:"img4/wc_sanft.webp",pe_creme:"img3/pe_creme.webp",g_berries:"img1/g_berries.webp",g_self:"img1/g_self.webp",wg_20:"img4/wg_20.webp",sh_vol:"img4/sh_vol.webp",sh_sens:"img4/sh_sens.webp",sh_lock:"img3/sh_lock.webp",te_magen:"img4/te_magen.webp",te_kamille:"img4/te_kamille.webp",te_erkk:"img4/te_erkk.webp",te_erk:"img4/te_erk.webp",te_hustk:"img4/te_hustk.webp",te_brenn:"img4/te_brenn.webp",te_schlaf:"img4/te_schlaf.webp",te_hust:"img4/te_hust.webp",te_frauen:"img4/te_frauen.webp",bo_shot:"img1/bo_shot.webp",lp_sens:"img2/lp_sens.webp",bo_mand:"img1/bo_mand.webp",bo_atem:"img1/bo_atem.webp",lp_men:"img2/lp_men.webp",lp_int:"img2/lp_int.webp",lp_sweet:"img2/lp_sweet.webp",lp_self:"img2/lp_self.webp",lp_candy:"img2/lp_candy.webp",ms_hya:"img3/ms_hya.webp",ms_glow:"img3/ms_glow.webp",hc_olive:"img2/hc_olive.webp",hc_aloe:"img2/hc_aloe.webp",hc_oil:"img2/hc_oil.webp",hc_lemon:"img2/hc_lemon.webp",hc_fast:"img2/hc_fast.webp",hc_glam:"img2/hc_glam.webp",hc_q10:"img2/hc_q10.webp",hc_med:"img2/hc_med.webp",hc_urea:"img2/hc_urea.webp",fc_self:"img1/fc_self.webp",fc_feel:"img1/fc_feel.webp",fc_urea:"img1/fc_urea.webp",fc_hirsch:"img1/fc_hirsch.webp",so_honey:"img4/so_honey.webp",so_sens:"img4/so_sens.webp",wp_care:"img4/wp_care.webp",wp_aloe:"img4/wp_aloe.webp",wp_mic:"img4/wp_mic.webp",mw_100:"img3/mw_100.webp",mw_500:"img3/mw_500.webp",mspray:"img3/mspray.webp",fm_feel:"img1/fm_feel.webp",fm_mac:"img1/fm_mac.webp",hpeel:"img2/hpeel.webp",mk_rice:"img3/mk_rice.webp",mk_ret:"img3/mk_ret.webp",mk_pump:"img3/mk_pump.webp",mk_glass:"img3/mk_glass.webp",mk_coco:"img2/mk_coco.webp",mk_self:"img3/mk_self.webp",mk_matcha:"img3/mk_matcha.webp",mk_lip:"img3/mk_lip.webp",ms_ret:"img3/ms_ret.webp",ms_aloe:"img3/ms_aloe.webp",ms_vitc:"img3/ms_vitc.webp",sb_big:"img3/sb_big.webp",sb_small:"img3/sb_small.webp",dp_pink:"img1/dp_pink.webp",dp_pure:"img1/dp_pure.webp",dp_moon:"img1/dp_moon.webp",dp_glam:"img1/dp_glam.webp",ro_dry:"img3/ro_dry.webp",ro_5in1:"img3/ro_5in1.webp",ro_soft:"img3/ro_soft.webp",ro_sens:"img3/ro_sens.webp",ro_glam:"img3/ro_glam.webp",dp_blush:"img1/dp_blush.webp",tp_anti:"img4/tp_anti.webp",tp_white:"img4/tp_white.webp",tp_herb:"img4/tp_herb.webp",tp_sens:"img4/tp_sens.webp",tp_tab:"img4/tp_tab.webp",gb_s:"img2/gb_s.webp",gb_m:"img2/gb_m.webp",gb_l:"img2/gb_l.webp",d_lemon:"img1/d_lemon.webp",d_van:"img1/d_van.webp",h_oil:"img2/h_oil.webp",dc_rasp:"img1/dc_rasp.webp",dc_sens:"img1/dc_sens.webp",g_lum:"img1/g_lum.webp",g_sens:"img1/g_sens.webp",g_lem:"img1/g_lem.webp",g_blush:"img1/g_blush.webp",bc_van:"img1/bc_van.webp",g_van:"img2/g_van.webp",g_mand:"img1/g_mand.webp",gm_fresh:"img2/gm_fresh.webp",gm_sens:"img2/gm_sens.webp",dm_sens:"img1/dm_sens.webp",dm_fresh:"img1/dm_fresh.webp",d_sens:"img1/d_sens.webp",d_5in1:"img1/d_5in1.webp",d_dry:"img1/d_dry.webp",vz:"img4/vz.webp",vmg:"img4/vmg.webp",vmu:"img4/vmu.webp",vfe:"img4/vfe.webp",vb12:"img4/vb12.webp",vca:"img4/vca.webp",vmm:"img4/vmm.webp",vim:"img4/vim.webp",vc:"img4/vc.webp",ra_s2:"img3/ra_s2.webp",ra_m:"img3/ra_m.webp",rk_xs:"img3/rk_xs.webp",rk_s:"img3/rk_s.webp",rk_m:"img3/rk_m.webp",cal_h:"img1/cal_h.webp",jag:"img2/jag.webp",sock:"img4/sock.webp",slip:"img4/slip.webp",pj_red:"img3/pj_red.webp",pj_pink:"img3/pj_pink.webp",pj_dog:"img3/pj_dog.webp",pj_lucky:"img3/pj_lucky.webp",pj_flor:"img3/pj_flor.webp",therm:"img4/therm.webp",rh_xs:"img3/rh_xs.webp",rh_s:"img3/rh_s.webp",rh_m:"img3/rh_m.webp",rs_xs:"img3/rs_xs.webp",rs_s:"img3/rs_s.webp",rs_m:"img3/rs_m.webp",rm_xs:"img3/rm_xs.webp",rm_s:"img3/rm_s.webp",rm_m:"img3/rm_m.webp",vw2:"img4/vw2.webp",vw1:"img4/vw1.webp",lr_pyr:"img2/lr_pyr.webp",lr1:"img2/lr1.webp",fn1:"img1/fn1.webp",mc2:"img2/mc2.webp",ef2:"img1/ef2.webp",ef1:"img1/ef1.webp",mc1:"img2/mc1.webp",ra_xs:"img3/ra_xs.webp",ra_s:"img3/ra_s.webp",tc1:"img4/tc1.webp",tc2:"img4/tc2.webp",tc3:"img4/tc3.webp",tc4:"img4/tc4.webp",tbr1:"img4/tbr1.webp",tbr2:"img4/tbr2.webp",tbr3:"img4/tbr3.webp",trd1:"img4/trd1.webp",trd2:"img4/trd2.webp",trd3:"img4/trd3.webp",tbk1:"img4/tbk1.webp",tbk2:"img4/tbk2.webp",tbk3:"img4/tbk3.webp",va1:"img4/va1.webp",va2:"img4/va2.webp",va3:"img4/va3.webp",kn_tp1:"img2/kn_tp1.webp",kn_tp2:"img2/kn_tp2.webp",kn_tp3:"img2/kn_tp3.webp",kn_tp4:"img2/kn_tp4.webp",kn_bk1:"img2/kn_bk1.webp",kn_bk2:"img2/kn_bk2.webp",kn_bk3:"img2/kn_bk3.webp",kn_cg1:"img2/kn_cg1.webp",kn_cg2:"img2/kn_cg2.webp",kn_cg3:"img2/kn_cg3.webp",kn_cr1:"img2/kn_cr1.webp",kn_cr2:"img2/kn_cr2.webp",tr_tp1:"img4/tr_tp1.webp",tr_tp2:"img4/tr_tp2.webp",tr_tp3:"img4/tr_tp3.webp",tr_bk1:"img4/tr_bk1.webp",tr_bk2:"img4/tr_bk2.webp",tr_bk3:"img4/tr_bk3.webp",cap_ret:"img1/cap_ret.webp",cap_q10:"img1/cap_q10.webp",cap_hya:"img1/cap_hya.webp",cap_vitc:"img1/cap_vitc.webp",men:"img2/men.webp",rituals:"img3/rituals.webp",hydra:"img1/c_hydra.webp",keratin:"img1/c_keratin.webp",oil:"img1/c_oil.webp",plex:"img1/c_plex.webp",parfum:"img1/c_parfum.webp",homme:"img1/c_homme.webp"};
 
@@ -548,15 +573,15 @@ const P = [
  ["b1","sacs","","Tommy Hilfiger mini sac cadenas","Cuir · bandoulière incluse",1899,null,[["Marron","بني","#5A3530",["tbr1","tbr2","tbr3"]],["Rouge","أحمر","#A8262A",["trd1","trd2","trd3"]],["Noir","أسود","#1E1B1B",["tbk1","tbk2","tbk3"]]]],
  ["b2","sacs","","Tommy Hilfiger sac toile rayé","Toile beige & cuir marine · bandoulière incluse",2490,null,[["Beige / marine","بيج / كحلي","#E3D9C6",["tc1","tc2","tc3","tc4"]]]],
  ["b5","sacs","","Valentino mini sac","Noir · bandoulière incluse",899,null,[["Noir","أسود","#1E1B1B",["va1","va2","va3"]]]],
- ["v1","vitamines","effervescents","Mivolis Vitamine C",["Renforce le système immunitaire · goût orange sanguine · 20 comprimés effervescents","يقوي المناعة · بنكهة البرتقال · 20 قرص فوار"],20,"vc"],
- ["v2","vitamines","effervescents","Mivolis Zinc + Vitamine C",["Zinc et vitamine C pour l'immunité · goût citron · 20 comprimés effervescents","الزنك وفيتامين C للمناعة · بنكهة الليمون · 20 قرص فوار"],20,"vz"],
- ["v3","vitamines","effervescents","Mivolis Immun Fit",["Vitamines C, D3, B12, zinc et sélénium pour l'immunité · goût orange · 20 comprimés effervescents","فيتامين C وD3 وB12 والزنك والسيلينيوم للمناعة · بنكهة البرتقال · 20 قرص فوار"],20,"vim"],
- ["v4","vitamines","effervescents","Mivolis Magnésium",["Pour les muscles et les nerfs, contre les crampes · goût citron · 20 comprimés effervescents","للعضلات والأعصاب وضد التشنجات · بنكهة الليمون · 20 قرص فوار"],20,"vmg"],
- ["v5","vitamines","effervescents","Mivolis Fer + Vitamine C",["Fer pour l'énergie, contre la fatigue · goût cassis · 20 comprimés effervescents","الحديد للطاقة وضد العيا · بنكهة الكاسيس · 20 قرص فوار"],20,"vfe"],
- ["v6","vitamines","effervescents","Mivolis Vitamine B12",["Réduit la fatigue et le stress · goût framboise-fraise · 20 comprimés effervescents","كتنقص العيا والتعب · بنكهة التوت والفراولة · 20 قرص فوار"],20,"vb12"],
- ["v7","vitamines","effervescents","Mivolis Multivitamines",["10 vitamines essentielles en un comprimé · goût tropical · 20 comprimés effervescents","10 فيتامينات فقرص واحد · بنكهة استوائية · 20 قرص فوار"],20,"vmu"],
- ["v8","vitamines","effervescents","Mivolis Multiminéral",["Calcium, magnésium et 6 oligo-éléments · goût orange-maracuja · 20 comprimés effervescents","الكالسيوم والمغنيزيوم و6 معادن · بنكهة البرتقال والماراكوجا · 20 قرص فوار"],20,"vmm"],
- ["v9","vitamines","effervescents","Mivolis Calcium",["Pour des os et des dents solides · goût orange · 20 comprimés effervescents","لعظام وسنان قوية · بنكهة البرتقال · 20 قرص فوار"],20,"vca"],
+ ["v1","vitamines","effervescents","Mivolis Vitamine C",["Renforce le système immunitaire · goût orange sanguine · 20 comprimés effervescents","يقوي المناعة · بنكهة البرتقال · 20 قرص فوار"],18,"vc"],
+ ["v2","vitamines","effervescents","Mivolis Zinc + Vitamine C",["Zinc et vitamine C pour l'immunité · goût citron · 20 comprimés effervescents","الزنك وفيتامين C للمناعة · بنكهة الليمون · 20 قرص فوار"],18,"vz"],
+ ["v3","vitamines","effervescents","Mivolis Immun Fit",["Vitamines C, D3, B12, zinc et sélénium pour l'immunité · goût orange · 20 comprimés effervescents","فيتامين C وD3 وB12 والزنك والسيلينيوم للمناعة · بنكهة البرتقال · 20 قرص فوار"],18,"vim"],
+ ["v4","vitamines","effervescents","Mivolis Magnésium",["Pour les muscles et les nerfs, contre les crampes · goût citron · 20 comprimés effervescents","للعضلات والأعصاب وضد التشنجات · بنكهة الليمون · 20 قرص فوار"],18,"vmg"],
+ ["v5","vitamines","effervescents","Mivolis Fer + Vitamine C",["Fer pour l'énergie, contre la fatigue · goût cassis · 20 comprimés effervescents","الحديد للطاقة وضد العيا · بنكهة الكاسيس · 20 قرص فوار"],18,"vfe"],
+ ["v6","vitamines","effervescents","Mivolis Vitamine B12",["Réduit la fatigue et le stress · goût framboise-fraise · 20 comprimés effervescents","كتنقص العيا والتعب · بنكهة التوت والفراولة · 20 قرص فوار"],18,"vb12"],
+ ["v7","vitamines","effervescents","Mivolis Multivitamines",["10 vitamines essentielles en un comprimé · goût tropical · 20 comprimés effervescents","10 فيتامينات فقرص واحد · بنكهة استوائية · 20 قرص فوار"],18,"vmu"],
+ ["v8","vitamines","effervescents","Mivolis Multiminéral",["Calcium, magnésium et 6 oligo-éléments · goût orange-maracuja · 20 comprimés effervescents","الكالسيوم والمغنيزيوم و6 معادن · بنكهة البرتقال والماراكوجا · 20 قرص فوار"],18,"vmm"],
+ ["v9","vitamines","effervescents","Mivolis Calcium",["Pour des os et des dents solides · goût orange · 20 comprimés effervescents","لعظام وسنان قوية · بنكهة البرتقال · 20 قرص فوار"],18,"vca"],
  ["k1","kbeauty","serums","Axis-Y Dark Spot Correcting Glow Serum",["Niacinamide 5 %, squalane : atténue les taches, teint lumineux · 50 ml","سيروم ضد البقع بالنياسيناميد، إشراقة · 50 مل"],179,"k_axis"],
  ["k2","kbeauty","pads","Cosrx Advanced Snail 96 Mucin Essence",["96 % mucine d'escargot, hydrate et répare · 100 ml","إيسونس بلعاب الحلزون، ترطيب وإصلاح · 100 مل"],209,"k_snail"],
  ["k3","kbeauty","serums","celimax Vita-A Retinal Shot Tightening Booster",["Rétinal 0,1 %, panthénol, Matrixyl : peau plus ferme · 15 ml","بوستر الريتينال، كيشد البشرة · 15 مل"],239,"k_celi"],
@@ -632,14 +657,14 @@ const P = [
  ["bb1","dentaire","bain","Dontodent Bain de bouche Gencives",["Sans alcool, renforce les gencives · format voyage 100 ml","غسول الفم بلا كحول، كيقوي اللثة · 100 مل"],19,"mw_100"],
  ["bb2","dentaire","bain","Dontodent Bain de bouche Antibactérien",["Sans alcool, combat les bactéries · 500 ml","غسول الفم ضد البكتيريا · 500 مل"],39,"mw_500"],
  ["bb3","dentaire","bain","Dontodent Spray buccal Cool Fresh",["Haleine fraîche instantanée, antibactérien · 15 ml","سبراي الفم، نفس فريش فالحين · 15 مل"],25,"mspray"],
- ["hc1","mainspieds","cmains","Balea Crème mains Olive",["Huile et beurre d'olive, mains très sèches · 100 ml","كريم اليدين بزيت الزيتون، لليدين الناشفين بزاف"],29,"hc_olive"],
- ["hc2","mainspieds","cmains","Balea Crème mains Aloe Vera",["Hydratation intense, mains sèches · 100 ml","ترطيب عميق بالألوفيرا"],29,"hc_aloe"],
- ["hc3","mainspieds","cmains","Balea Lotion mains Crème-Huile",["Huile d'amande, parfum noix de marula · 100 ml","بزيت اللوز، عناية فاخرة"],29,"hc_oil"],
- ["hc4","mainspieds","cmains","Balea Crème mains Buttermilk & Lemon",["Babeurre et citron, soin doux · 100 ml","بالحليب والليمون، عناية ناعمة"],29,"hc_lemon"],
- ["hc5","mainspieds","cmains","Balea Crème mains pénétration rapide",["Soin express, ne graisse pas · 100 ml","كتدخل بسرعة بلا دهون"],29,"hc_fast"],
- ["hc6","mainspieds","cmains","Balea Crème mains Glamorous Moment",["Parfum oriental-floral, mains sèches · 100 ml","ريحة شرقية، لليدين الناشفين"],29,"hc_glam"],
- ["hc7","mainspieds","cmains","Balea Crème mains Urea 5 %",["Soin intensif, mains abîmées · 100 ml","5% يوريا، لليدين المتشققين"],29,"hc_urea"],
- ["hc8","mainspieds","cmains","Balea Crème mains Q10 SPF 15",["Lisse la peau, huile d'abricot, protection solaire · 100 ml","ضد التجاعيد مع حماية من الشمس"],45,"hc_q10"],
+ ["hc1","mainspieds","cmains","Balea Crème mains Olive",["Huile et beurre d'olive, mains très sèches · 100 ml","كريم اليدين بزيت الزيتون، لليدين الناشفين بزاف"],26,"hc_olive"],
+ ["hc2","mainspieds","cmains","Balea Crème mains Aloe Vera",["Hydratation intense, mains sèches · 100 ml","ترطيب عميق بالألوفيرا"],26,"hc_aloe"],
+ ["hc3","mainspieds","cmains","Balea Lotion mains Crème-Huile",["Huile d'amande, parfum noix de marula · 100 ml","بزيت اللوز، عناية فاخرة"],26,"hc_oil"],
+ ["hc4","mainspieds","cmains","Balea Crème mains Buttermilk & Lemon",["Babeurre et citron, soin doux · 100 ml","بالحليب والليمون، عناية ناعمة"],26,"hc_lemon"],
+ ["hc5","mainspieds","cmains","Balea Crème mains pénétration rapide",["Soin express, ne graisse pas · 100 ml","كتدخل بسرعة بلا دهون"],26,"hc_fast"],
+ ["hc6","mainspieds","cmains","Balea Crème mains Glamorous Moment",["Parfum oriental-floral, mains sèches · 100 ml","ريحة شرقية، لليدين الناشفين"],26,"hc_glam"],
+ ["hc7","mainspieds","cmains","Balea Crème mains Urea 5 %",["Soin intensif, mains abîmées · 100 ml","5% يوريا، لليدين المتشققين"],26,"hc_urea"],
+ ["hc8","mainspieds","cmains","Balea Crème mains Q10 SPF 15",["Lisse la peau, huile d'abricot, protection solaire · 100 ml","ضد التجاعيد مع حماية من الشمس"],37,"hc_q10"],
  ["hc9","mainspieds","cmains","Balea med Crème mains Ultra Sensitive",["5 % panthénol, sans parfum, peau très sensible · 100 ml","للبشرة الحساسة بزاف، بلا عطر"],39,"hc_med"],
  ["hp1","mainspieds","gmains","Balea Gommage mains Rose & Abricot",["Huile de rose sauvage, mains douces · 15 ml","تقشير اليدين بزيت الورد، يدين ناعمين"],25,"hpeel"],
  ["fc1","mainspieds","cpieds","Balea Baume pieds Feel Well",["Litsea et huile d'abricot, soin apaisant · 100 ml","بلسم الرجلين، عناية مريحة"],32,"fc_feel"],
@@ -667,24 +692,24 @@ const P = [
  ["bo1","vitamines","bonbons","Mivolis Bonbons Vitamin-Shot",["Fourrés, myrtille et fraise, vitamines C, B6, B12 · sans sucre · 75 g","حلوى معمرة بالفيتامينات، بلا سكر · 75 غ"],19,"bo_shot"],
  ["bo2","vitamines","bonbons","Mivolis Bonbons Mandarine-Romarin",["Avec vitamine C, pour la gorge · sans sucre · 75 g","حلوى للحلق بفيتامين C، بلا سكر · 75 غ"],19,"bo_mand"],
  ["bo3","vitamines","bonbons","Mivolis Bonbons Atemfrei",["Huiles essentielles, fraîcheur glacée · sans sucre · 75 g","حلوى منعشة بالزيوت الطبيعية، بلا سكر · 75 غ"],19,"bo_atem"],
- ["lb1","visage","levres","Balea Baume lèvres Intensiv",["Karité et argan, lèvres sèches","مرطب الشفاه بالشيا والأركان، للشفاه الناشفة"],19,"lp_int"],
+ ["lb1","visage","levres","Balea Baume lèvres Intensiv",["Karité et argan, lèvres sèches","مرطب الشفاه بالشيا والأركان، للشفاه الناشفة"],16,"lp_int"],
  ["lb2","visage","levres","Balea Baume lèvres Sensitive · lot de 2",["Aloe vera, lèvres sensibles","مرطب الشفاه للشفاه الحساسة · جوج"],25,"lp_sens"],
- ["lb3","visage","levres","Balea Baume lèvres Sweet Treat",["Parfum biscuit vanille · édition limitée","مرطب الشفاه بريحة الفانيلا"],19,"lp_sweet"],
- ["lb4","visage","levres","Balea Baume lèvres Self Care Moments",["Parfum doux · édition limitée","مرطب الشفاه بريحة ناعمة"],19,"lp_self"],
- ["lb5","visage","levres","Balea Baume lèvres Candy Cutie",["Légère couleur rosée, parfum fruité · édition limitée","مرطب الشفاه بلون وردي خفيف"],19,"lp_candy"],
+ ["lb3","visage","levres","Balea Baume lèvres Sweet Treat",["Parfum biscuit vanille · édition limitée","مرطب الشفاه بريحة الفانيلا"],16,"lp_sweet"],
+ ["lb4","visage","levres","Balea Baume lèvres Self Care Moments",["Parfum doux · édition limitée","مرطب الشفاه بريحة ناعمة"],16,"lp_self"],
+ ["lb5","visage","levres","Balea Baume lèvres Candy Cutie",["Légère couleur rosée, parfum fruité · édition limitée","مرطب الشفاه بلون وردي خفيف"],16,"lp_candy"],
  ["lb6","visage","homme","Balea Men Baume lèvres Active Care SPF 15",["Vitamine E, protège du dessèchement","مرطب الشفاه للرجال مع حماية من الشمس"],19,"lp_men"],
  ["gd9","corps","douche","Balea Gel douche Soft Roses",["Parfum floral délicat, huile de jojoba · 300 ml","ريحة الورد الناعمة بزيت الجوجوبا · 300 مل"],25,"g_roses"],
  ["gd10","corps","douche","Balea Gel douche Velvet Berries",["Parfum fruité, huile de macadamia · 300 ml","ريحة الفواكه الحمراء · 300 مل"],25,"g_berries"],
  ["gd11","corps","douche","Balea Crème douche Self Care Moments",["Parfum doux et cocooning · édition limitée · 300 ml","ريحة ناعمة ومريحة · 300 مل"],25,"g_self"],
  ["fc5","mainspieds","cpieds","Balea Crème pieds Intensiv",["Huile d'inca inchi et beurre de cupuaçu, soin riche · 100 ml","عناية غنية للرجلين الناشفين بزاف"],49,"fc_int"],
  ["fc6","mainspieds","cpieds","Balea med Crème pieds Ultra Sensitive",["5 % panthénol, sans parfum, peau très sensible · 100 ml","للبشرة الحساسة بزاف، بلا عطر"],39,"fc_med"],
- ["ng1","visage","nettoyants","Balea Gel nettoyant rafraîchissant",["10 % aloe vera, peau normale et mixte · 150 ml","غسول الوجه بالألوفيرا للبشرة العادية والمختلطة"],29,"wg_150"],
+ ["ng1","visage","nettoyants","Balea Gel nettoyant rafraîchissant",["10 % aloe vera, peau normale et mixte · 150 ml","غسول الوجه بالألوفيرا للبشرة العادية والمختلطة"],25,"wg_150"],
  ["ng2","visage","nettoyants","Balea Gel nettoyant rafraîchissant · voyage",["Format voyage 20 ml","غسول الوجه، حجم السفر"],15,"wg_20"],
  ["ng3","visage","nettoyants","Balea Hautrein Gel anti-boutons",["Acide salicylique et zinc, contre boutons et points noirs · 150 ml","ضد الحبوب والنقط السوداء"],45,"wg_pickel"],
- ["ng4","visage","nettoyants","Balea Crème lavante douce",["Huile d'amande, peau sèche et sensible · 150 ml","غسول كريمي للبشرة الناشفة والحساسة"],29,"wc_sanft"],
+ ["ng4","visage","nettoyants","Balea Crème lavante douce",["Huile d'amande, peau sèche et sensible · 150 ml","غسول كريمي للبشرة الناشفة والحساسة"],25,"wc_sanft"],
  ["gv1","visage","gommages","Balea Crème gommage visage",["Affine le grain de peau, huile d'amande · 75 ml","تقشير الوجه بزيت اللوز"],25,"pe_creme"],
- ["hs1","cheveux","shampoings","Balea Shampoing Volume",["Parfum maracuja, cheveux fins, sans silicone · 300 ml","شامبو للشعر الرقيق، كيعطي حجم"],45,"sh_vol"],
- ["hs2","cheveux","shampoings","Balea Shampoing Sensitive",["Aloe vera, cuir chevelu sensible, sans silicone · 300 ml","شامبو لفروة الرأس الحساسة"],45,"sh_sens"],
+ ["hs1","cheveux","shampoings","Balea Shampoing Volume",["Parfum maracuja, cheveux fins, sans silicone · 300 ml","شامبو للشعر الرقيق، كيعطي حجم"],36,"sh_vol"],
+ ["hs2","cheveux","shampoings","Balea Shampoing Sensitive",["Aloe vera, cuir chevelu sensible, sans silicone · 300 ml","شامبو لفروة الرأس الحساسة"],36,"sh_sens"],
  ["hs3","cheveux","shampoings","Balea Shampoing Boucles beauty essentials",["Macadamia et karité, sans silicone ni sulfates · 400 ml","شامبو للشعر المجعد بلا سيليكون"],45,"sh_lock"],
  ["bl1","corps","lotion","Balea Lotion Crème-Huile Amande",["40 % d'huiles, peau sèche · 200 ml","لوسيون بزيت اللوز، 40% زيوت · 200 مل"],45,"bl_mandel"],
  ["bl2","corps","lotion","Balea Lotion Crème-Huile Cerise",["Huile d'argan, parfum cerise · 200 ml","لوسيون بزيت الأركان وريحة الكرز · 200 مل"],45,"bl_kirsch"],
@@ -700,22 +725,22 @@ const P = [
  ["br1","corps","brumes","Balea Brume Lovely Vanilla",["Parfum vanille sensuel, tous types de peau · 200 ml","بادي سبراي بريحة الفانيلا · 200 مل"],49,"bs_van"],
  ["br2","corps","brumes","Balea Brume parfumée Glamorous Moment",["Parfum oriental-floral · 200 ml","بادي سبراي بريحة شرقية · 200 مل"],45,"bs_glam"],
  ["br3","corps","brumes","Balea Brume parfumée Velvet Embrace",["Parfum doux et séduisant · 200 ml","بادي سبراي بريحة حلوة · 200 مل"],49,"bs_velvet"],
- ["hs4","cheveux","shampoings","Balea Shampoing Farbglanz",["Cheveux colorés, parfum cerise, sans silicone · 300 ml","شامبو للشعر المصبوغ بريحة الكرز · 300 مل"],45,"sh_farb"],
+ ["hs4","cheveux","shampoings","Balea Shampoing Farbglanz",["Cheveux colorés, parfum cerise, sans silicone · 300 ml","شامبو للشعر المصبوغ بريحة الكرز · 300 مل"],36,"sh_farb"],
  ["ap1","cheveux","apres","Balea Après-shampoing Farbglanz",["Cheveux colorés, parfum cerise, sans silicone · 300 ml","بلسم للشعر المصبوغ · 300 مل"],45,"co_farb"],
  ["ap2","cheveux","apres","Balea Après-shampoing Boucles beauty essentials",["Macadamia et karité, sans silicone · 350 ml","بلسم للشعر المجعد · 350 مل"],45,"co_lock"],
  ["mh1","visage","homme","Balea Men Crème visage Active Care SPF 30",["Panthénol et vitamine E, protection UVA, hydrate · 75 ml","كريم الوجه للرجال مع حماية SPF 30 · 75 مل"],59,"mh_cream"],
  ["mh2","visage","homme","Balea Men Masque tissu Hydro",["Aloe vera et camomille, fraîcheur immédiate, hydrate 24 h","ماسك ورقي للرجال بالألوفيرا، ترطيب 24 ساعة"],15,"mh_mask"],
  ["mh3","visage","homme","Balea Men Patchs yeux hydrogel",["Double acide hyaluronique et panthénol · 1 paire","باتش العينين للرجال بالهيالورون · زوج"],25,"mh_pads"],
- ["mh4","cheveux","homme","Balea Men Shampoing",["Fresh (anti-gras, minéraux marins) ou Sensitive (cuir chevelu sensible) · 300 ml","Fresh ضد الدهون أو Sensitive لفروة الرأس الحساسة · 300 مل"],45,null,[["Fresh","Fresh","#1F5FA8",["msh_fresh"]],["Sensitive","Sensitive","#A9C6E3",["msh_sens"]]]],
+ ["mh4","cheveux","homme","Balea Men Shampoing",["Fresh (anti-gras, minéraux marins) ou Sensitive (cuir chevelu sensible) · 300 ml","Fresh ضد الدهون أو Sensitive لفروة الرأس الحساسة · 300 مل"],36,null,[["Fresh","Fresh","#1F5FA8",["msh_fresh"]],["Sensitive","Sensitive","#A9C6E3",["msh_sens"]]]],
  ["rz1","corps","rasage","Balea Mousse à raser Pure Cotton",["Fleur de coton et aloe, peau sensible · 150 ml","رغوة الحلاقة للنساء، للبشرة الحساسة · 150 مل"],29,"rs_cotton"],
  ["rz2","corps","rasage","Balea Mousse à raser Velvet Violet",["Parfum framboise et violette, peau sensible · édition limitée · 150 ml","رغوة الحلاقة بريحة التوت والبنفسج · 150 مل"],29,"rs_violet"],
  ["rz3","corps","rasage","Balea med Gel de rasage Ultra Sensitive",["Sans parfum, peau très sensible · 200 ml","جيل الحلاقة للبشرة الحساسة بزاف · 200 مل"],39,"rg_med"],
  ["rz4","corps","rasage","Balea Rasoirs jetables 2 lames · 10 pièces",["Bande glissante aloe vera et vitamine E","رازوارات 2 شفرات · 10 حبات"],29,"rz_2w"],
  ["rz5","corps","rasage","Balea Rasoirs jetables 3 lames · 8 pièces",["Tête flexible, aloe vera et vitamine E","رازوارات 3 شفرات · 8 حبات"],39,"rz_3"],
  ["rz6","corps","homme","Balea Men Rasoirs jetables 2 lames · 10 pièces",["Jusqu'à 70 rasages, aloe vera et vitamine E","رازوارات للرجال · 10 حبات"],29,"rz_men"],
- ["ng5","visage","nettoyants","Balea Mousse nettoyante douce",["Fleur d'amandier, peau sèche et sensible · 150 ml","رغوة منظفة للوجه للبشرة الحساسة · 150 مل"],45,"ps_mild"],
+ ["ng5","visage","nettoyants","Balea Mousse nettoyante douce",["Fleur d'amandier, peau sèche et sensible · 150 ml","رغوة منظفة للوجه للبشرة الحساسة · 150 مل"],42,"ps_mild"],
  ["gv2","visage","gommages","Balea Gel gommage Aloe Vera",["10 % aloe vera, affine le grain de peau, peau normale et mixte · 75 ml","تقشير الوجه بالألوفيرا · 75 مل"],25,"pg_aloe"],
- ["ng6","visage","nettoyants","Balea Mousse nettoyante Aloe Vera",["10 % aloe vera, hydro-complexe, peau normale et mixte · 150 ml","رغوة منظفة بالألوفيرا للبشرة العادية والمختلطة · 150 مل"],45,"fs_aloe"],
+ ["ng6","visage","nettoyants","Balea Mousse nettoyante Aloe Vera",["10 % aloe vera, hydro-complexe, peau normale et mixte · 150 ml","رغوة منظفة بالألوفيرا للبشرة العادية والمختلطة · 150 مل"],42,"fs_aloe"],
  ["tn1","visage","toniques","Balea Tonique nourrissant Fleur d'amandier",["Sans alcool, nettoie en douceur, peau sèche et sensible · 200 ml","تونيك بلا كحول للبشرة الناشفة والحساسة · 200 مل"],25,"tn_pfl"],
  ["tn2","visage","toniques","Balea Tonique hydratant Aloe Vera",["10 % aloe vera, purifie et rafraîchit, peau normale et mixte · 200 ml","تونيك بالألوفيرا للبشرة العادية والمختلطة · 200 مل"],25,"tn_feu"],
  ["tn3","visage","toniques","Balea med Tonique Ultra Sensitive",["Sans alcool, sans parfum ni colorants, peau très sensible · 200 ml","تونيك للبشرة الحساسة بزاف، بلا عطر · 200 مل"],45,"tn_med"],
@@ -741,7 +766,6 @@ const P = [
  ["kb3","kbeauty","pads","Medicube Zero Pore Pad",["AHA, BHA, panthénol · resserre les pores · 70 pads","AHA وBHA، كيصغر المسام · 70 باد"],239,"kb_zpad"],
  ["kb4","kbeauty","masques","Biodance Bio-Collagen Real Deep Mask",["Masque hydrogel collagène : hydratation, fermeté, éclat · prix à l'unité (1 masque)","ماسك الكولاجين: ترطيب، شد وإشراقة · الثمن للحبة (ماسك واحد)"],59,"kb_bio"],
  ["kb5","kbeauty","masques","Medicube PDRN Pink Collagen Gel Mask",["Masque gel PDRN et collagène, peau repulpée · prix à l'unité (1 masque)","ماسك جيل PDRN وكولاجين · الثمن للحبة (ماسك واحد)"],59,"kb_mpink"],
- ["kb6","kbeauty","masques","Medicube Kojic Acid Turmeric Gel Mask",["Acide kojique, curcuma, niacinamide 2 % : éclat et teint unifié · prix à l'unité (1 masque)","حمض الكوجيك والكركم: إشراقة وتوحيد اللون · الثمن للحبة (ماسك واحد)"],49,"kb_kojic"],
  ["kb7","kbeauty","balea","Balea Korean Tonerpads Pore Refining",["Acide glycolique et riz, affine les pores, sans parfum · 55 pads","تونر باد كيصغر المسام، بلا عطر · 55 باد"],89,"kb_pads"],
  ["kb8","kbeauty","balea","Balea Korean PDRN Power Serum",["PDRN de riz + céramides, sans parfum · 30 ml","سيروم PDRN بالسيراميد، بلا عطر · 30 مل"],99,"kb_pdrn"],
  ["kb9","kbeauty","balea","Balea Korean Crème Dewy Water",["Glycérine, niacinamide, hydratation fraîche, sans parfum · 50 ml","كريم مرطب منعش بالنياسيناميد · 50 مل"],89,"kb_dewy"],
@@ -798,7 +822,7 @@ const T = {
  nav_cat:["Catalogue","الكتالوغ"], nav_dem:["Commande sur demande","طلب خاص"], nav_fid:["Carte fidélité","بطاقة الوفاء"], nav_contact:["Contact","اتصلي بنا"],
  hero_eye:["Soin & beauté","العناية والجمال"],
  hero_h:["L'Europe, <em>livrée</em><br>chez vous.","أوروبا <em>كتوصل</em><br>لعندك."],
- an1:["Livraison partout au Maroc","التوصيل لجميع المدن"], an2:["Produits 100 % authentiques","منتجات أصلية 100%"], an3:["Achetés en Allemagne","مشرية من ألمانيا"],
+ an1:["Livraison partout au Maroc","التوصيل لجميع المدن"], bf:["🖤 BLACK FRIDAY · 2 déos = 40 DH · 3 gels douche = 60 DH · livraison offerte dès 350 DH","🖤 BLACK FRIDAY · 2 ديو = 40 درهم · 3 جيل دوش = 60 درهم · التوصيل فابور من 350 درهم"], an2:["Produits 100 % authentiques","منتجات أصلية 100%"], an3:["Achetés en Allemagne","مشرية من ألمانيا"],
  nav_home:["Accueil","الرئيسية"],
  tr1:["Produits 100 % authentiques","منتجات أصلية 100%"], tr2:["Achetés en Allemagne","مشرية من ألمانيا"], tr3:["Livraison partout au Maroc","التوصيل لجميع المدن"], tr4:["Confirmation sur WhatsApp","التأكيد فالواتساب"],
  new_h:["Nouveautés","الجديد"], cats_h:["Nos catégories","الأقسام"],
@@ -826,7 +850,7 @@ const T = {
  f_link:["Lien du produit","رابط المنتوج"], f_det:["Taille, couleur, quantité","المقاس، اللون، الكمية"], f_city:["Ville","المدينة"], f_name:["Prénom","الاسم"], f_send:["Envoyer sur WhatsApp","صيفطي فالواتساب"],
  fid_card:["Carte fidélité","بطاقة الوفاء"], gift:["Cadeau","هدية"],
  fid_eye:["Carte fidélité","بطاقة الوفاء"], fid_h:["Merci pour votre confiance","شكراً على الثقة ديالك"],
- r1:["1 commande confirmée = 1 tampon, noté par SOKARA sur WhatsApp.","كل طلبية مأكدة = طابع واحد، كنسجلوه ليك فالواتساب."],
+ r1:["1 commande = 1 tampon, ajouté automatiquement sur votre carte.","كل طلبية = طابع واحد، كيتزاد بوحدو فالبطاقة ديالك."],
  r2:["Après 5 commandes : un cadeau offert de la boutique.","من بعد 5 طلبيات: هدية من البوتيك."],
  r3:["Après 10 commandes : un code promo de −10 % à saisir dans le panier.","من بعد 10 طلبيات: كود برومو −10% تكتبيه فالبانيي."],
  inf_eye:["Livraison & paiement","التوصيل والخلاص"], inf_h:["Simple et clair","ساهل وواضح"],
@@ -842,9 +866,15 @@ const T = {
  cart:["Panier","البانيي"], cart_empty:["Votre panier est vide.","البانيي خاوي."],
  gift_box:["Je veux mes produits dans une box cadeau SOKARA (Crée ta box). Dès 5 produits : −10 % et box offerte.","بغيت المنتوجات ديالي فبوكس هدية SOKARA. من 5 منتوجات: −10% والبوكس فابور."],
  city:["Ville de livraison","مدينة التوصيل"], agadir:["Agadir et environs (15 DH)","أكادير ونواحيها (15 درهم)"], other:["Autre ville (35 DH)","مدينة أخرى (35 درهم)"],
- name:["Nom complet","الاسم الكامل"], addr:["Adresse","العنوان"], phone:["Téléphone","رقم الهاتف"], promo:["Code promo (carte fidélité)","كود البرومو (بطاقة الوفاء)"],
+ name:["Nom complet","الاسم الكامل"], addr:["Adresse","العنوان"], phone:["Téléphone","رقم الهاتف"], promo:["Code promo","كود البرومو"],
  sub:["Sous-total","المجموع"], disc:["Box cadeau −10 %","بوكس هدية −10%"], deliv:["Livraison","التوصيل"], total:["Total","الإجمالي"],
- promo_note:["Le code promo est appliqué à la confirmation sur WhatsApp.","كود البرومو كيتحسب عند التأكيد فالواتساب."],
+ promo_note:["Promos Black Friday appliquées automatiquement. Code SOKARA10 : −10 % après 10 commandes.","برومو Black Friday كيتطبق بوحدو. الكود SOKARA10: −10% من بعد 10 طلبيات."],
+ two_for:["2 pour","2 ب"], free:["Offerte 🎁","فابور 🎁"], free_hint:["🚚 Livraison offerte dès 350 DH","🚚 التوصيل فابور من 350 درهم"], bogo:["3 pour 60 DH","3 ب 60 درهم"], bf_eye:["Black Friday","Black Friday"], bf_h:["Toutes les promos 🔥","جميع البرومو 🔥"], bf_p:["Gel douche 3 = 60 DH · 2 déos = 40 DH · 2 roll-on = 30 DH · Beauty of Joseon 199 DH · Fino dès 199 DH · 4 masques coréens = 199 DH · routine coréenne (Cosrx cleanser + Snail 96 + Beauty of Joseon) = 499 DH · packs routine 125 DH · pack Glamorous 139 DH · livraison offerte dès 350 DH. Appliqué automatiquement dans le panier.","جيل دوش 3 = 60 درهم · 2 ديو = 40 درهم · 2 رول أون = 30 درهم · Beauty of Joseon 199 درهم · Fino من 199 درهم · 4 ماسكات = 199 درهم · الروتين الكوري = 499 درهم · باك الروتين 125 درهم · باك Glamorous 139 درهم · التوصيل فابور من 350 درهم. كيتطبق بوحدو فالبانيي."], promo_auto:["Promo Black Friday","برومو Black Friday"], p_ok:["Code appliqué ✓","الكود تطبق ✓"], p_bad:["Code non valide","الكود ماشي صحيح"], p_need:["Ajoutez au moins 2 déos ou 2 roll-on","زيدي على الأقل 2 ديو ولا 2 رول أون"], p_fid:["Disponible après 10 commandes","متوفر من بعد 10 طلبيات"],
+ pdisc:["Code promo","كود البرومو"],
+ fid_you:["Vos commandes avec ce téléphone","الطلبيات ديالك من هاد التيليفون"], fid_next:["Prochaine commande : n°","الطلبية الجاية: رقم"],
+ fid_gift5:["🎁 5 commandes ! Un cadeau vous attend dans votre prochain colis.","🎁 5 طلبيات! عندك هدية فالكولي الجاي."],
+ fid_code10:["🎉 10 commandes ! Votre code −10 % : SOKARA10","🎉 10 طلبيات! الكود ديالك −10%: SOKARA10"],
+ fid_note:["La carte se remplit automatiquement à chaque commande envoyée depuis ce téléphone. SOKARA vérifie sur WhatsApp.","البطاقة كتعمر بوحدها مع كل طلبية من هاد التيليفون. SOKARA كتأكد فالواتساب."],
  send:["Envoyer la commande sur WhatsApp","صيفطي الطلبية فالواتساب"],
  confirm:["Votre commande est confirmée par SOKARA sur WhatsApp. Paiement à la livraison.","الطلبية كتأكد من طرف SOKARA فالواتساب. الخلاص عند الاستلام."],
  colors:["couleurs","ألوان"], taille:["Taille","المقاس"], onorder:["sur commande","بالطلب"], sznote:["Tailles en gras = en stock. Les autres tailles sont sur commande (avance 50 %).","المقاسات الغامقة = متوفرة. الباقي بالطلب (تسبيق 50%)."], from:["dès","من"], size:["Format","الحجم"], ask:["Sur demande","فالخاص"], askbtn:["Demander le prix sur WhatsApp","سولي على الثمن فالواتساب"], choose:["Choisir","اختاري"], color:["Couleur","اللون"], addcart:["Ajouter au panier","زيدي للبانيي"],
@@ -859,6 +889,12 @@ const t = k => (T[k] ? T[k][lang === "ar" ? 1 : 0] : k);
 const wa = msg => "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(msg);
 const store = {get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const byId = Object.fromEntries(P.map(p => [p[0], p]));
+const BOGO_IDS = ["gd1","gd2","gd3","gd4","gd5","gd6","gd7","gd8","gd9","gd10","gd11","gd12"];
+if (promoOn()) {
+  Object.entries(OLDP).forEach(([id,o]) => { if (byId[id]) PROMO[id] = [o, 0]; });
+  Object.entries(BF_PACKS).forEach(([id,n]) => { if (byId[id]) { PROMO[id] = [byId[id][5], 0]; byId[id][5] = n; } });
+  SPRAY_IDS.forEach(i => PROMO[i] = PROMO[i] || [0, 40]); ROLL_IDS.forEach(i => PROMO[i] = PROMO[i] || [0, 30]);
+}
 const catLabel = c => c[lang === "ar" ? 2 : 1];
 
 function applyLang(){
@@ -871,7 +907,8 @@ function applyLang(){
   });
   document.querySelectorAll("[data-msg]").forEach(a => { a.href = wa(t(a.dataset.msg)); a.target = "_blank"; a.rel = "noopener"; });
   $("d-city").innerHTML = CITIES.map(c => `<option>${c}</option>`).join("");
-  renderChips(); renderGrid(); renderCart(); renderRail(); renderTiles();
+  renderChips(); renderGrid(); renderCart(); renderRail(); renderTiles(); renderFid(); renderBF();
+  $("bfbar").hidden = !(new Date() < BF_END);
 }
 
 function renderChips(){
@@ -905,6 +942,7 @@ function renderTiles(){
   $("tiles").innerHTML = CATS.map(c => { const tl = TILE[c[0]] || ["#EFE4D7",""];
     return `<button type="button" class="tile" data-c="${c[0]}" data-go style="--t:${tl[0]}"><div class="art"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">${tl[1]}</svg></div><span>${catLabel(c)}</span></button>`; }).join("");
 }
+function renderBF(){ const on = promoOn(); $("blackfriday").hidden = !on; if (on) $("bfGrid").innerHTML = [...Object.keys(BF_PACKS), ...BOGO_IDS, ...SPRAY_IDS, ...ROLL_IDS, ...Object.keys(PROMO).filter(id => !SPRAY_IDS.includes(id) && !ROLL_IDS.includes(id))].filter((id,i,a) => a.indexOf(id) === i && byId[id] && byId[id][6]).map(id => cardHTML(byId[id])).join(""); }
 function renderRail(){ $("rail").innerHTML = NEW_IN.filter(id => byId[id]).map(id => cardHTML(byId[id])).join(""); }
 function cardHTML(p){
   const [id,, , name, note, price, img0, colors] = p;
@@ -920,8 +958,9 @@ function cardHTML(p){
   const img = img0;
   const ph = img && IMG[img] ? `<img src="${IMG[img]}" alt="${name}" loading="lazy"${PACK.has(img)?' class="pack"':''}>` : `<i>${name.trim()[0]}</i>`;
   const inCart = cart[id];
-  return `<article class="card"><div class="ph">${ph}</div><div class="body"><h3>${name}</h3><p class="note">${Array.isArray(note) ? (lang==="ar" ? note[1] : note[0]) : note}</p>
-    <div class="foot"><span class="price">${price} DH</span><button type="button" class="add${inCart?" done":""}" data-add="${id}">${inCart?t("added"):t("add")}</button></div></div></article>`;
+  return `<article class="card"><div class="ph">${promoOn() && PROMO[id] && PROMO[id][0] ? `<span class="off">−${Math.round((1 - price/PROMO[id][0])*100)} %</span>` : promoOn() && PROMO[id] ? `<span class="off">2 = ${PROMO[id][1]} DH</span>` : promoOn() && BOGO_IDS.includes(id) ? `<span class="off">3 = 60 DH</span>` : ""}${ph}</div><div class="body"><h3>${name}</h3><p class="note">${Array.isArray(note) ? (lang==="ar" ? note[1] : note[0]) : note}</p>
+    ${promoOn() && PROMO[id] && PROMO[id][1] ? `<div class="pr-badge">🔥 ${t("two_for")} ${PROMO[id][1]} DH</div>` : promoOn() && BOGO_IDS.includes(id) ? `<div class="pr-badge">🎁 ${t("bogo")}</div>` : promoOn() && PROMO[id] ? `<div class="pr-badge">🖤 Black Friday</div>` : ""}
+    <div class="foot"><span class="price">${promoOn() && PROMO[id] && PROMO[id][0] ? `<s class="old">${PROMO[id][0]} DH</s> <span class="new">${price} DH</span>` : price + " DH"}</span><button type="button" class="add${inCart?" done":""}" data-add="${id}">${inCart?t("added"):t("add")}</button></div></div></article>`;
 }
 
 function renderGrid(){
@@ -956,9 +995,35 @@ function totals(){
   const disc = giftOn && n >= BOX_MIN ? Math.round(subtotal*BOX_DISCOUNT) : 0;
   const city = store.get("sk_city") || "agadir";
   const del = n ? DELIVERY[city] : 0;
-  return {ids, n, subtotal, giftOn, disc, city, del, total: subtotal - disc + del};
+  const code = ((store.get("sk_form") || {}).promo || "").trim().toUpperCase();
+  let pdisc = 0, pstate = code ? "bad" : "", bdisc = 0;
+  if (promoOn()) {
+    const cnt = list => ids.reduce((s,id) => s + (list.includes(id.split("|")[0]) ? cart[id] : 0), 0);
+    bdisc = Math.floor(cnt(SPRAY_IDS)/2) * (2*25 - 40) + Math.floor(cnt(ROLL_IDS)/2) * (2*19 - 30);
+    const gp = []; ids.forEach(id => { if (BOGO_IDS.includes(id.split("|")[0])) for (let k = 0; k < cart[id]; k++) gp.push(item(id).price); });
+    bdisc += Math.floor(gp.length/3) * (3*25 - 60);
+    const q = id => ids.reduce((s,k) => s + (k.split("|")[0] === id ? cart[k] : 0), 0);
+    bdisc += Math.floor(q("kb4")/4) * (4*59 - 199) + Math.floor(q("kb5")/4) * (4*59 - 199);
+    bdisc += Math.min(q("kb1"), q("k2"), q("k7")) * (159 + 199 + 199 - 499);
+  }
+  if (code === "DEO2") { pstate = bdisc ? "ok" : "need"; }
+  else if (code === FID_CODE) {
+    if (fidCount() >= 10) { pdisc = Math.round((subtotal - disc) * 0.10); pstate = "ok"; } else pstate = "fid";
+  }
+  const goods = subtotal - disc - bdisc - pdisc; const free = promoOn() && n && goods >= FREE_SHIP; const del2 = free ? 0 : del;
+  return {ids, n, subtotal, giftOn, disc, city, del: del2, free, code, pdisc, pstate, bdisc, total: goods + del2};
 }
 
+function fidData(){ return store.get("sk_fid") || {n:0, last:"", t:0}; }
+function fidCount(){ return fidData().n; }
+function renderFid(){
+  const n = fidCount(), st = $("stamps"); if (!st) return;
+  [...st.children].forEach((el,i) => el.classList.toggle("on", i < Math.min(n,10)));
+  const cyc = n % 10;
+  $("fidSt").innerHTML = `<div>${t("fid_you")} : <b>${n}</b></div><div>${t("fid_next")} ${n+1}</div>` +
+    (n >= 10 ? `<div class="fid-msg">${t("fid_code10")}</div>` : n >= 5 ? `<div class="fid-msg">${t("fid_gift5")}</div>` : "") +
+    `<small style="opacity:.75">${t("fid_note")}</small>`;
+}
 function renderCart(){
   const s = totals();
   $("count").textContent = s.n;
@@ -972,10 +1037,14 @@ function renderCart(){
     <label for="c-name">${t("name")}<input id="c-name" type="text" value="${(saved.name||"").replace(/"/g,"&quot;")}"></label>
     <label for="c-phone">${t("phone")}<input id="c-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 00 00 00 00" value="${(saved.phone||"").replace(/"/g,"&quot;")}"></label>
     <label for="c-addr">${t("addr")}<textarea id="c-addr">${(saved.addr||"").replace(/</g,"&lt;")}</textarea></label>
-    <label for="c-promo">${t("promo")}<input id="c-promo" type="text" value="${(saved.promo||"").replace(/"/g,"&quot;")}"></label>
+    <label for="c-promo">${t("promo")}<input id="c-promo" type="text" autocapitalize="characters" placeholder="SOKARA10" value="${(saved.promo||"").replace(/"/g,"&quot;")}"></label>
+    <div class="pmsg ${s.pstate==="ok"?"ok":"bad"}" id="pmsg">${s.pstate==="ok"?t("p_ok"):s.pstate==="need"?t("p_need"):s.pstate==="fid"?t("p_fid"):s.pstate==="bad"?t("p_bad"):""}</div>
     <div class="sum"><div><span>${t("sub")}</span><span>${s.subtotal} DH</span></div>
       ${s.disc?`<div><span>${t("disc")}</span><span>−${s.disc} DH</span></div>`:""}
-      <div><span>${t("deliv")}</span><span>${s.del} DH</span></div>
+      ${s.bdisc?`<div><span>🔥 ${t("promo_auto")}</span><span>−${s.bdisc} DH</span></div>`:""}
+      ${s.pdisc?`<div><span>${t("pdisc")} ${s.code}</span><span>−${s.pdisc} DH</span></div>`:""}
+      <div><span>${t("deliv")}</span><span>${s.free ? t("free") : s.del + " DH"}</span></div>
+      ${promoOn() && !s.free ? `<small style="color:var(--muted)">${t("free_hint")}</small>` : ""}
       <div class="tot"><span>${t("total")}</span><span>${s.total} DH</span></div>
       <small style="color:var(--muted)">${t("promo_note")}</small></div>`;
 }
@@ -1007,9 +1076,9 @@ document.addEventListener("click", e => {
   const th = e.target.closest("[data-th]"); if (th) { openProduct(pv.id, pv.c, +th.dataset.th, pv.s); return; }
   if (e.target.closest("#pvAdd")) { const k = pv.id + "|" + pv.c + (pv.s ? "|" + pv.s : ""); cart[k] = (cart[k]||0) + 1; save(); closeProduct(); toast(t("toast")); return; }
   if (e.target.closest("#pvClose") || e.target.id === "pvScrim") { closeProduct(); return; }
-  const a = e.target.closest("[data-add]"); if (a) { const id = a.dataset.add; cart[id] = (cart[id]||0) + 1; save(); renderGrid(); renderRail(); toast(t("toast")); return; }
-  const q = e.target.closest("[data-q]"); if (q) { const id = q.dataset.q; cart[id] += +q.dataset.d; if (cart[id] <= 0) delete cart[id]; save(); renderGrid(); return; }
-  const r = e.target.closest("[data-rm]"); if (r) { delete cart[r.dataset.rm]; save(); renderGrid(); return; }
+  const a = e.target.closest("[data-add]"); if (a) { const id = a.dataset.add; cart[id] = (cart[id]||0) + 1; save(); renderGrid(); renderBF(); renderRail(); toast(t("toast")); return; }
+  const q = e.target.closest("[data-q]"); if (q) { const id = q.dataset.q; cart[id] += +q.dataset.d; if (cart[id] <= 0) delete cart[id]; save(); renderGrid(); renderBF(); return; }
+  const r = e.target.closest("[data-rm]"); if (r) { delete cart[r.dataset.rm]; save(); renderGrid(); renderBF(); return; }
 });
 $("dBody").addEventListener("change", e => {
   if (e.target.id === "giftBox") { store.set("sk_gift", e.target.checked); renderCart(); }
@@ -1017,6 +1086,7 @@ $("dBody").addEventListener("change", e => {
 });
 $("dBody").addEventListener("input", e => {
   if (["c-name","c-phone","c-addr","c-promo"].includes(e.target.id)) store.set("sk_form", {name:$("c-name").value, phone:$("c-phone").value, addr:$("c-addr").value, promo:$("c-promo").value});
+  if (e.target.id === "c-promo") { clearTimeout(window._pt); window._pt = setTimeout(() => { const pos = e.target.selectionStart; renderCart(); const el = $("c-promo"); el.focus(); try { el.setSelectionRange(pos, pos); } catch(_){} }, 450); }
 });
 ["railPrev","railNext"].forEach((id,i) => $(id).onclick = () => { const r = $("rail"); const dir = (i ? 1 : -1) * (document.documentElement.dir === "rtl" ? -1 : 1); r.scrollBy({left: dir * r.clientWidth * .8}); });
 $("openCart").onclick = () => openCart(true);
@@ -1032,11 +1102,15 @@ $("sendOrder").onclick = () => {
   const lines = s.ids.map(id => `• ${item(id).fr} × ${cart[id]} = ${item(id).price*cart[id]} DH`).join("\n");
   const msg = `Bonjour SOKARA, nouvelle commande ✨\n\n${lines}\n\nSous-total : ${s.subtotal} DH` +
     (s.giftOn ? `\nBox cadeau : oui${s.disc?` (−${s.disc} DH)`:""}` : "") +
-    `\nLivraison : ${s.del} DH (${s.city==="agadir"?"Agadir":"Autre ville"})\nTotal : ${s.total} DH` +
-    (f.promo ? `\nCode promo : ${f.promo}` : "") +
+    (s.bdisc ? `\nPromo Black Friday (2 déos = 40 · 2 roll-on = 30 · 3 gels = 60 · 4 masques = 199 · routine coréenne = 499) : −${s.bdisc} DH` : "") +
+    (s.pdisc ? `\nCode promo ${s.code} : −${s.pdisc} DH` : (f.promo ? `\nCode promo : ${f.promo} (non appliqué)` : "")) +
+    `\nLivraison : ${s.free ? "offerte (dès 350 DH)" : s.del + " DH"} (${s.city==="agadir"?"Agadir":"Autre ville"})\nTotal : ${s.total} DH` +
+    `\nCarte fidélité : commande n°${fidCount() + (fidNew(lines) ? 1 : 0)}` +
     `\n\nNom : ${f.name||""}\nTéléphone : ${f.phone||""}\nAdresse : ${f.addr||""}\n\nMerci de confirmer ma commande.`;
+  if (fidNew(lines)) { const d = fidData(); store.set("sk_fid", {n: d.n + 1, last: lines, t: Date.now()}); renderFid(); }
   window.open(wa(msg), "_blank", "noopener") || (location.href = wa(msg));
 };
+function fidNew(lines){ const d = fidData(); return !(d.last === lines && Date.now() - d.t < 6*3600*1000); }
 
 $("demForm").addEventListener("submit", e => {
   e.preventDefault();
@@ -1059,4 +1133,5 @@ cart = store.get("sk_cart") || {};
 Object.keys(cart).forEach(id => { if (!item(id)) delete cart[id]; });
 lang = store.get("sk_lang") === "ar" ? "ar" : "fr";
 applyLang();
+if (location.hash === "#blackfriday" || location.hash === "#bf-grid") setTimeout(() => { const el = $(location.hash.slice(1)); if (el && !$("blackfriday").hidden) el.scrollIntoView(); }, 60);
 </script>
