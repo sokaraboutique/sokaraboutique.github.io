@@ -304,9 +304,10 @@ footer{padding-block:28px;color:var(--muted);font-size:.88rem;text-align:center}
 <main id="top">
   <section id="blackfriday" class="bfsec" hidden>
     <div class="wrap">
-      <a href="#bf-grid" class="bf-ban"><img src="bf_banner.webp" alt="Black Friday SOKARA : 3 gels douche = 60 DH, 2 déos = 40 DH, 2 roll-on = 30 DH, livraison offerte dès 350 DH" width="1200" height="800" fetchpriority="high"></a>
+      <a href="#bf-grid" class="bf-ban"><picture><source media="(max-width: 700px)" srcset="bf_banner_mobile.webp" width="1080" height="1350"><img src="bf_banner.webp" alt="Black Friday SOKARA : jusqu'à −28 %, livraison offerte dès 350 DH, jusqu'au 15 décembre" width="1200" height="800" fetchpriority="high"></picture></a>
       <div class="head" id="bf-grid" style="margin-top:28px"><p class="eyebrow" data-i="bf_eye"></p><h2 data-i="bf_h"></h2><p style="color:var(--muted)" data-i="bf_p"></p></div>
       <div class="grid" id="bfGrid"></div>
+      <div style="text-align:center;margin-top:22px"><button type="button" class="btn btn-wine" id="bfMore"></button></div>
     </div>
   </section>
   <section class="hero">
@@ -514,11 +515,11 @@ const PACK = new Set(["v_mela","v_biotin","v_maenner","v_female","amp_hya","vz",
 const NEW_IN = ["kb18","vg4","kb1","kb12","hb2","rv1","pc1","hb7","r1","r3","p1","f3","l10","l8","r4","sh1","f2","l3","b3","b1","b5","b4","b2","cap5","cap2","cap4","l1","p3","k2","h1","cap3","cap1"];
 const BOX_DISCOUNT = 0.10, BOX_MIN = 5;
 const SPRAY_IDS = ["dd1", "dd2", "dd3", "dd4", "dd5", "dd10", "dd11", "dd12", "dd13", "dd14", "dd20", "dd21", "dd22"], ROLL_IDS = ["dd15", "dd16", "dd17", "dd18", "dd19", "ro1", "ro2"];
-const BF_END = new Date("2027-01-01T00:00:00+01:00");
+const BF_END = new Date("2026-12-16T00:00:00+01:00");
 const FID_CODE = "SOKARA10";
 const PROMO = {}; // id -> [old price, bundle price for 2 or 0]
 const OLDP = {"hs1": 45, "hs2": 45, "hs4": 45, "mh4": 45, "hc1": 29, "hc2": 29, "hc3": 29, "hc4": 29, "hc5": 29, "hc6": 29, "hc7": 29, "hc8": 45, "ng1": 29, "ng4": 29, "ng5": 45, "ng6": 45, "v1": 20, "v2": 20, "v3": 20, "v4": 20, "v5": 20, "v6": 20, "v7": 20, "v8": 20, "v9": 20, "lb1": 19, "lb3": 19, "lb4": 19, "lb5": 19};
-const BF_PACKS = {pc1:139, rv1:125, rv2:125, k7:199, k8:209, k2:199, kb1:159, k4:239, k5:229, kb18:249, fi1:199, fi2:219, fi3:199, fi4:199, fi5:499};
+const BF_PACKS = {pc1:139, rv1:125, rv2:125, k7:199, k8:209, k2:199, kb1:159, k4:239, k5:229, kb18:249, fi1:199, fi2:219, fi3:199, fi4:199, fi5:499, p1:139, p2:139, p4:139, p3:129, p5:129};
 const FREE_SHIP = 350;
 const promoOn = () => new Date() < BF_END;
 
@@ -558,11 +559,12 @@ const P = [
  ["r5","rituals","sets","Rituals Karma","Lotus & thé blanc",249,null,[["XS · 3 produits","XS · 3 منتوجات","#3FA3A8",["rk_xs"],249],["S · 4 produits","S · 4 منتوجات","#3FA3A8",["rk_s"],349],["M · 4 produits","M · 4 منتوجات","#3FA3A8",["rk_m"],479]],"size"],
  ["h1","parfums","homme","Jaguar Classic Black","Eau de toilette · original",269,null,[["100 ml","100 ml","#1E1B1B",["jag"]]],"size"],
  ["h2","parfums","homme","Câline Homme Powerful Black","Eau de toilette",129,null,[["60 ml","60 ml","#B07A5A",["cal_h"]]],"size"],
- ["p1","pyjamas","pyjamas","Pyjama polaire rouge nœuds","Polaire chaude",179,null,[["Rouge","أحمر","#B3202B",["pj_red"]]],null,{all:["XS","S","M","L","XL","XXL","XXXL"],stock:["M","L"]}],
- ["p2","pyjamas","pyjamas","Pyjama polaire rose nœuds","Polaire chaude",179,null,[["Rose","وردي","#E77DA6",["pj_pink"]]],null,{all:["XS","S","M","L","XL","XXL","XXXL"],stock:["M","L"]}],
- ["p3","pyjamas","pyjamas","Pyjama « Let me sleep »","T-shirt gris & pantalon",179,null,[["Gris / crème","رمادي / كريمي","#BDBDBD",["pj_dog"]]],null,{all:["XS","S","M","L","XL","XXL","XXXL"],stock:["M","L"]}],
- ["p4","pyjamas","pyjamas","Pyjama « Lucky »","T-shirt bordeaux & pantalon",179,null,[["Bordeaux / crème","بوردو / كريمي","#5A1422",["pj_lucky"]]],null,{all:["XS","S","M","L","XL","XXL","XXXL"],stock:["M","L"]}],
- ["p5","pyjamas","pyjamas","Pyjama fleuri","T-shirt rose & pantalon fleuri",179,null,[["Rose / fleurs","وردي / ورود","#E9A3A0",["pj_flor"]]],null,{all:["XS","S","M","L","XL","XXL","XXXL"],stock:["M","L"]}],
+ ["p1","pyjamas","pyjamas","Pyjama polaire rouge nœuds","Polaire chaude",179,null,[["Rouge","أحمر","#B3202B",["pj_red"]]],null,{all:["M","L"],stock:["M","L"]}],
+ ["p2","pyjamas","pyjamas","Pyjama polaire rose nœuds","Polaire chaude",179,null,[["Rose","وردي","#E77DA6",["pj_pink"]]],null,{all:["M","L"],stock:["M","L"]}],
+ ["p3","pyjamas","pyjamas","Pyjama « Let me sleep »","T-shirt gris & pantalon",179,null,[["Gris / crème","رمادي / كريمي","#BDBDBD",["pj_dog"]]],null,{all:["M","L"],stock:["M","L"]}],
+ ["p4","pyjamas","pyjamas","Pyjama « Lucky »","T-shirt bordeaux & pantalon",179,null,[["Bordeaux / crème","بوردو / كريمي","#5A1422",["pj_lucky"]]],null,{all:["M","L"],stock:["M","L"]}],
+ ["p5","pyjamas","pyjamas","Pyjama fleuri","T-shirt rose & pantalon fleuri",179,null,[["Rose / fleurs","وردي / ورود","#E9A3A0",["pj_flor"]]],null,{all:["M","L"],stock:["M","L"]}],
+ ["pk1","pyjamas","pyjamas","Pack Cocooning 🎁","Pyjama au choix + chaussons & chaussettes fraises",199,null,[["Pyjama rouge","بيجاما حمرا","#B3202B",["pj_red","sock"]],["Pyjama rose","بيجاما وردية","#E77DA6",["pj_pink","sock"]],["Lucky","Lucky","#5A1422",["pj_lucky","sock"]],["Let me sleep","Let me sleep","#BDBDBD",["pj_dog","sock"]],["Fleuri","بالورد","#E9A3A0",["pj_flor","sock"]]],null,{all:["M","L"],stock:["M","L"]}],
  ["p6","pyjamas","thermique","Ensemble thermique top + legging","Primark · chaud et doux",219,null,[["Taupe","بيج","#8C7A68",["therm"]],["Anthracite","رمادي غامق","#3A3A3E",["therm"]]],null,{all:["XS","S","M","L","XL","XXL","XXXL"],stock:["M"]}],
  ["p7","pyjamas","thermique","Top thermique","Primark",119,null,[["Taupe","بيج","#8C7A68",["therm"]],["Anthracite","رمادي غامق","#3A3A3E",["therm"]]],null,{all:["XS","S","M","L","XL","XXL","XXXL"],stock:["M"]}],
  ["p8","pyjamas","thermique","Legging thermique","Primark",119,null,[["Taupe","بيج","#8C7A68",["therm"]],["Anthracite","رمادي غامق","#3A3A3E",["therm"]]],null,{all:["XS","S","M","L","XL","XXL","XXXL"],stock:["M"]}],
@@ -822,7 +824,7 @@ const T = {
  nav_cat:["Catalogue","الكتالوغ"], nav_dem:["Commande sur demande","طلب خاص"], nav_fid:["Carte fidélité","بطاقة الوفاء"], nav_contact:["Contact","اتصلي بنا"],
  hero_eye:["Soin & beauté","العناية والجمال"],
  hero_h:["L'Europe, <em>livrée</em><br>chez vous.","أوروبا <em>كتوصل</em><br>لعندك."],
- an1:["Livraison partout au Maroc","التوصيل لجميع المدن"], bf:["🖤 BLACK FRIDAY · 2 déos = 40 DH · 3 gels douche = 60 DH · livraison offerte dès 350 DH","🖤 BLACK FRIDAY · 2 ديو = 40 درهم · 3 جيل دوش = 60 درهم · التوصيل فابور من 350 درهم"], an2:["Produits 100 % authentiques","منتجات أصلية 100%"], an3:["Achetés en Allemagne","مشرية من ألمانيا"],
+ an1:["Livraison partout au Maroc","التوصيل لجميع المدن"], bf:["🖤 BLACK FRIDAY · jusqu'à −28 % · livraison offerte dès 350 DH","🖤 BLACK FRIDAY · حتى −28% · التوصيل فابور من 350 درهم"], an2:["Produits 100 % authentiques","منتجات أصلية 100%"], an3:["Achetés en Allemagne","مشرية من ألمانيا"],
  nav_home:["Accueil","الرئيسية"],
  tr1:["Produits 100 % authentiques","منتجات أصلية 100%"], tr2:["Achetés en Allemagne","مشرية من ألمانيا"], tr3:["Livraison partout au Maroc","التوصيل لجميع المدن"], tr4:["Confirmation sur WhatsApp","التأكيد فالواتساب"],
  new_h:["Nouveautés","الجديد"], cats_h:["Nos catégories","الأقسام"],
@@ -841,7 +843,7 @@ const T = {
  empty_b:["Commander sur demande","طلب خاص"],
  own_h:["Crée ta box","صاوبي البوكس ديالك"],
  own_p:["Ajoutez au panier les produits que vous voulez, puis cochez « Box cadeau » dans le panier. À partir de 5 produits : −10 % et emballage cadeau offert.","زيدي فالبانيي المنتوجات اللي بغيتي، ومن بعد ختاري «بوكس هدية». من 5 منتوجات وفوق: −10% والتغليف فابور."],
- dem_eye:["Commande sur demande","طلب خاص"], dem_h:["Un produit d'Europe ? Envoyez le lien.","بغيتي شي حاجة من أوروبا؟ صيفطي الرابط."],
+ dem_eye:["Commande sur demande","طلب خاص"], dem_h:["Un produit d'Europe ? Envoyez le lien.","بغيتي شي حاجة من أوروبا؟ صيفطي الرابط."],
  s1:["Envoyez le lien","صيفطي الرابط"], s1p:["dm, Rossmann, Douglas, Sephora, Primark, Action, Zara…","dm، Rossmann، Douglas، Sephora، Primark، Action…"],
  s2:["Recevez le prix en DH","توصلي بالثمن بالدرهم"], s2p:["Produit + transport vers le Maroc.","المنتوج + النقل للمغرب."],
  s3:["Payez 50 % d'avance","خلصي 50% مسبقاً"], s3p:["On achète le produit pour vous.","كنشريو ليك المنتوج."],
@@ -869,12 +871,12 @@ const T = {
  name:["Nom complet","الاسم الكامل"], addr:["Adresse","العنوان"], phone:["Téléphone","رقم الهاتف"], promo:["Code promo","كود البرومو"],
  sub:["Sous-total","المجموع"], disc:["Box cadeau −10 %","بوكس هدية −10%"], deliv:["Livraison","التوصيل"], total:["Total","الإجمالي"],
  promo_note:["Promos Black Friday appliquées automatiquement. Code SOKARA10 : −10 % après 10 commandes.","برومو Black Friday كيتطبق بوحدو. الكود SOKARA10: −10% من بعد 10 طلبيات."],
- two_for:["2 pour","2 ب"], free:["Offerte 🎁","فابور 🎁"], free_hint:["🚚 Livraison offerte dès 350 DH","🚚 التوصيل فابور من 350 درهم"], bogo:["3 pour 60 DH","3 ب 60 درهم"], bf_eye:["Black Friday","Black Friday"], bf_h:["Toutes les promos 🔥","جميع البرومو 🔥"], bf_p:["Gel douche 3 = 60 DH · 2 déos = 40 DH · 2 roll-on = 30 DH · Beauty of Joseon 199 DH · Fino dès 199 DH · 4 masques coréens = 199 DH · routine coréenne (Cosrx cleanser + Snail 96 + Beauty of Joseon) = 499 DH · packs routine 125 DH · pack Glamorous 139 DH · livraison offerte dès 350 DH. Appliqué automatiquement dans le panier.","جيل دوش 3 = 60 درهم · 2 ديو = 40 درهم · 2 رول أون = 30 درهم · Beauty of Joseon 199 درهم · Fino من 199 درهم · 4 ماسكات = 199 درهم · الروتين الكوري = 499 درهم · باك الروتين 125 درهم · باك Glamorous 139 درهم · التوصيل فابور من 350 درهم. كيتطبق بوحدو فالبانيي."], promo_auto:["Promo Black Friday","برومو Black Friday"], p_ok:["Code appliqué ✓","الكود تطبق ✓"], p_bad:["Code non valide","الكود ماشي صحيح"], p_need:["Ajoutez au moins 2 déos ou 2 roll-on","زيدي على الأقل 2 ديو ولا 2 رول أون"], p_fid:["Disponible après 10 commandes","متوفر من بعد 10 طلبيات"],
+ two_for:["2 pour","2 ب"], four_for:["4 masques = 199 DH","4 ماسكات = 199 درهم"], free:["Offerte 🎁","فابور 🎁"], free_hint:["🚚 Livraison offerte dès 350 DH","🚚 التوصيل فابور من 350 درهم"], bogo:["3 pour 60 DH","3 ب 60 درهم"], bf_eye:["Black Friday","Black Friday"], bf_h:["Les meilleures offres 🔥","أحسن العروض 🔥"], bf_all:["Voir toutes les promos","شوفي جميع البرومو"], bf_less:["Voir moins","شوفي أقل"], bf_p:["Les prix sont déjà réduits, et les offres (3 gels = 60 DH, 2 déos = 40 DH, 4 masques = 199 DH…) s'appliquent automatiquement dans le panier. Jusqu'au 15 décembre.","الأثمنة مخفضة، و العروض (3 جيل = 60 درهم، 2 ديو = 40 درهم، 4 ماسكات = 199 درهم…) كتطبق بوحدها فالبانيي. حتى 15 دجنبر."], promo_auto:["Promo Black Friday","برومو Black Friday"], p_ok:["Code appliqué ✓","الكود تطبق ✓"], p_bad:["Code non valide","الكود ماشي صحيح"], p_need:["Ajoutez au moins 2 déos ou 2 roll-on","زيدي على الأقل 2 ديو ولا 2 رول أون"], p_fid:["Disponible après 10 commandes","متوفر من بعد 10 طلبيات"],
  pdisc:["Code promo","كود البرومو"],
- fid_you:["Vos commandes avec ce téléphone","الطلبيات ديالك من هاد التيليفون"], fid_next:["Prochaine commande : n°","الطلبية الجاية: رقم"],
+ fid_ph:["Votre numéro de téléphone","رقم التيليفون ديالك"], fid_enter:["Entrez votre numéro pour voir votre carte.","دخلي الرقم ديالك باش تشوفي البطاقة."], fid_you:["Vos commandes avec ce téléphone","الطلبيات ديالك من هاد التيليفون"], fid_next:["Prochaine commande : n°","الطلبية الجاية: رقم"],
  fid_gift5:["🎁 5 commandes ! Un cadeau vous attend dans votre prochain colis.","🎁 5 طلبيات! عندك هدية فالكولي الجاي."],
  fid_code10:["🎉 10 commandes ! Votre code −10 % : SOKARA10","🎉 10 طلبيات! الكود ديالك −10%: SOKARA10"],
- fid_note:["La carte se remplit automatiquement à chaque commande envoyée depuis ce téléphone. SOKARA vérifie sur WhatsApp.","البطاقة كتعمر بوحدها مع كل طلبية من هاد التيليفون. SOKARA كتأكد فالواتساب."],
+ fid_note:["Votre carte est liée à votre numéro : chaque commande envoyée avec ce numéro ajoute un tampon. SOKARA vérifie aussi sur WhatsApp.","البطاقة مربوطة بالرقم ديالك: كل طلبية بهاد الرقم كتزيد طابع. SOKARA كتأكد حتى فالواتساب."],
  send:["Envoyer la commande sur WhatsApp","صيفطي الطلبية فالواتساب"],
  confirm:["Votre commande est confirmée par SOKARA sur WhatsApp. Paiement à la livraison.","الطلبية كتأكد من طرف SOKARA فالواتساب. الخلاص عند الاستلام."],
  colors:["couleurs","ألوان"], taille:["Taille","المقاس"], onorder:["sur commande","بالطلب"], sznote:["Tailles en gras = en stock. Les autres tailles sont sur commande (avance 50 %).","المقاسات الغامقة = متوفرة. الباقي بالطلب (تسبيق 50%)."], from:["dès","من"], size:["Format","الحجم"], ask:["Sur demande","فالخاص"], askbtn:["Demander le prix sur WhatsApp","سولي على الثمن فالواتساب"], choose:["Choisir","اختاري"], color:["Couleur","اللون"], addcart:["Ajouter au panier","زيدي للبانيي"],
@@ -890,9 +892,11 @@ const wa = msg => "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(msg);
 const store = {get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const byId = Object.fromEntries(P.map(p => [p[0], p]));
 const BOGO_IDS = ["gd1","gd2","gd3","gd4","gd5","gd6","gd7","gd8","gd9","gd10","gd11","gd12"];
+if (!promoOn()) { const k = P.findIndex(p => p[0] === "pk1"); if (k >= 0) P.splice(k, 1); }
 if (promoOn()) {
   Object.entries(OLDP).forEach(([id,o]) => { if (byId[id]) PROMO[id] = [o, 0]; });
   Object.entries(BF_PACKS).forEach(([id,n]) => { if (byId[id]) { PROMO[id] = [byId[id][5], 0]; byId[id][5] = n; } });
+  if (byId.pk1) PROMO.pk1 = [258, 0];
   SPRAY_IDS.forEach(i => PROMO[i] = PROMO[i] || [0, 40]); ROLL_IDS.forEach(i => PROMO[i] = PROMO[i] || [0, 30]);
 }
 const catLabel = c => c[lang === "ar" ? 2 : 1];
@@ -942,7 +946,15 @@ function renderTiles(){
   $("tiles").innerHTML = CATS.map(c => { const tl = TILE[c[0]] || ["#EFE4D7",""];
     return `<button type="button" class="tile" data-c="${c[0]}" data-go style="--t:${tl[0]}"><div class="art"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">${tl[1]}</svg></div><span>${catLabel(c)}</span></button>`; }).join("");
 }
-function renderBF(){ const on = promoOn(); $("blackfriday").hidden = !on; if (on) $("bfGrid").innerHTML = [...Object.keys(BF_PACKS), ...BOGO_IDS, ...SPRAY_IDS, ...ROLL_IDS, ...Object.keys(PROMO).filter(id => !SPRAY_IDS.includes(id) && !ROLL_IDS.includes(id))].filter((id,i,a) => a.indexOf(id) === i && byId[id] && byId[id][6]).map(id => cardHTML(byId[id])).join(""); }
+let bfAll = false;
+const BF_FEAT = ["pk1","p1","p3","k7","fi5","pc1","rv1","gd1","dd10","dd15","k2","kb4"];
+function renderBF(){ const on = promoOn(); $("blackfriday").hidden = !on; if (!on) return;
+  const ids = [...BF_FEAT, "pk1", ...Object.keys(BF_PACKS), ...BOGO_IDS, ...SPRAY_IDS, ...ROLL_IDS, ...Object.keys(PROMO)].filter((id,i,a) => a.indexOf(id) === i && byId[id] && (byId[id][6] || byId[id][7]) && P.includes(byId[id]));
+  const feat = ids.filter(id => BF_FEAT.includes(id));
+  $("bfGrid").innerHTML = (bfAll ? ids : feat).map(id => cardHTML(byId[id])).join("");
+  $("bfMore").textContent = bfAll ? t("bf_less") : `${t("bf_all")} (${ids.length}) ↓`;
+}
+document.addEventListener("click", e => { if (e.target.id === "bfMore") { bfAll = !bfAll; renderBF(); if (!bfAll) $("bf-grid").scrollIntoView({behavior:"smooth"}); } });
 function renderRail(){ $("rail").innerHTML = NEW_IN.filter(id => byId[id]).map(id => cardHTML(byId[id])).join(""); }
 function cardHTML(p){
   const [id,, , name, note, price, img0, colors] = p;
@@ -952,14 +964,14 @@ function cardHTML(p){
     const dots = isSize ? "" : colors.map(c => `<i class="dot" style="background:${c[2]}" title="${c[0]}"></i>`).join("");
     const prices = colors.map(c => c[4] || price); const minP = Math.min(...prices);
     const sizeTxt = colors.map(c => c[0].split(" · ")[0]).join(" · ");
-    return `<article class="card"><button type="button" class="ph open" data-open="${id}" aria-label="${name}"><img class="gray" src="${im}" alt="${name}" loading="lazy" decoding="async"></button><div class="body"><h3>${name}</h3><p class="note">${Array.isArray(note) ? (lang==="ar" ? note[1] : note[0]) : note}</p><div class="dots">${dots}<span>${p[9] ? (p[9].all.length > 1 ? p[9].all[0] + "–" + p[9].all[p[9].all.length-1] : t("taille") + " " + p[9].all[0]) + (colors.length > 1 ? " · " + colors.length + " " + t("colors") : "") : isSize ? sizeTxt : (colors.length > 1 ? colors.length + " " + t("colors") : (lang==="ar"?colors[0][1]:colors[0][0]))}</span></div>
-    <div class="foot"><span class="price">${price ? (prices.length > 1 && new Set(prices).size > 1 ? t("from") + " " + minP : minP) + " DH" : t("ask")}</span><button type="button" class="add" data-open="${id}">${t("choose")}</button></div></div></article>`;
+    return `<article class="card"><button type="button" class="ph open" data-open="${id}" aria-label="${name}">${promoOn() && PROMO[id] && PROMO[id][0] && (1 - minP/PROMO[id][0]) >= .05 ? `<span class="off">−${Math.round((1 - minP/PROMO[id][0])*100)} %</span>` : ""}<img class="gray" src="${im}" alt="${name}" loading="lazy" decoding="async"></button><div class="body"><h3>${name}</h3><p class="note">${Array.isArray(note) ? (lang==="ar" ? note[1] : note[0]) : note}</p><div class="dots">${dots}<span>${p[9] ? (p[9].all.length > 1 ? p[9].all[0] + "–" + p[9].all[p[9].all.length-1] : t("taille") + " " + p[9].all[0]) + (colors.length > 1 ? " · " + colors.length + " " + t("colors") : "") : isSize ? sizeTxt : (colors.length > 1 ? colors.length + " " + t("colors") : (lang==="ar"?colors[0][1]:colors[0][0]))}</span></div>
+    <div class="foot"><span class="price">${promoOn() && PROMO[id] && PROMO[id][0] ? `<s class="old">${PROMO[id][0]} DH</s> ` : ""}${price ? (prices.length > 1 && new Set(prices).size > 1 ? t("from") + " " + minP : minP) + " DH" : t("ask")}</span><button type="button" class="add" data-open="${id}">${t("choose")}</button></div></div></article>`;
   }
   const img = img0;
   const ph = img && IMG[img] ? `<img src="${IMG[img]}" alt="${name}" loading="lazy"${PACK.has(img)?' class="pack"':''}>` : `<i>${name.trim()[0]}</i>`;
   const inCart = cart[id];
-  return `<article class="card"><div class="ph">${promoOn() && PROMO[id] && PROMO[id][0] ? `<span class="off">−${Math.round((1 - price/PROMO[id][0])*100)} %</span>` : promoOn() && PROMO[id] ? `<span class="off">2 = ${PROMO[id][1]} DH</span>` : promoOn() && BOGO_IDS.includes(id) ? `<span class="off">3 = 60 DH</span>` : ""}${ph}</div><div class="body"><h3>${name}</h3><p class="note">${Array.isArray(note) ? (lang==="ar" ? note[1] : note[0]) : note}</p>
-    ${promoOn() && PROMO[id] && PROMO[id][1] ? `<div class="pr-badge">🔥 ${t("two_for")} ${PROMO[id][1]} DH</div>` : promoOn() && BOGO_IDS.includes(id) ? `<div class="pr-badge">🎁 ${t("bogo")}</div>` : promoOn() && PROMO[id] ? `<div class="pr-badge">🖤 Black Friday</div>` : ""}
+  return `<article class="card"><div class="ph">${promoOn() && PROMO[id] && PROMO[id][0] && (1 - price/PROMO[id][0]) >= .05 ? `<span class="off">−${Math.round((1 - price/PROMO[id][0])*100)} %</span>` : promoOn() && PROMO[id] && PROMO[id][1] ? `<span class="off">2 = ${PROMO[id][1]} DH</span>` : promoOn() && (id==="kb4"||id==="kb5") ? `<span class="off">4 = 199 DH</span>` : promoOn() && BOGO_IDS.includes(id) ? `<span class="off">3 = 60 DH</span>` : ""}${ph}</div><div class="body"><h3>${name}</h3><p class="note">${Array.isArray(note) ? (lang==="ar" ? note[1] : note[0]) : note}</p>
+    ${promoOn() && PROMO[id] && PROMO[id][1] ? `<div class="pr-badge">🔥 ${t("two_for")} ${PROMO[id][1]} DH</div>` : promoOn() && (id==="kb4"||id==="kb5") ? `<div class="pr-badge">🎁 ${t("four_for")}</div>` : promoOn() && BOGO_IDS.includes(id) ? `<div class="pr-badge">🎁 ${t("bogo")}</div>` : promoOn() && PROMO[id] ? `<div class="pr-badge">🖤 Black Friday</div>` : ""}
     <div class="foot"><span class="price">${promoOn() && PROMO[id] && PROMO[id][0] ? `<s class="old">${PROMO[id][0]} DH</s> <span class="new">${price} DH</span>` : price + " DH"}</span><button type="button" class="add${inCart?" done":""}" data-add="${id}">${inCart?t("added"):t("add")}</button></div></div></article>`;
 }
 
@@ -1014,16 +1026,21 @@ function totals(){
   return {ids, n, subtotal, giftOn, disc, city, del: del2, free, code, pdisc, pstate, bdisc, total: goods + del2};
 }
 
-function fidData(){ return store.get("sk_fid") || {n:0, last:"", t:0}; }
+const normPhone = s => { s = (s||"").replace(/\D/g,""); if (s.startsWith("00212")) s = "0"+s.slice(5); else if (s.startsWith("212")) s = "0"+s.slice(3); return s.length >= 9 ? s : ""; };
+function fidAll(){ const m = store.get("sk_fidp") || {}; const old = store.get("sk_fid"); if (old && old.n && !m._old) { m._old = old; } return m; }
+function fidPhone(){ return normPhone(store.get("sk_fidphone") || (store.get("sk_form")||{}).phone); }
+function fidData(){ const m = fidAll(), ph = fidPhone(); return (ph && m[ph]) || (!ph && m._old) || {n:0, last:"", t:0}; }
 function fidCount(){ return fidData().n; }
 function renderFid(){
-  const n = fidCount(), st = $("stamps"); if (!st) return;
+  const st = $("stamps"); if (!st) return;
+  const ph = fidPhone(), n = fidCount();
   [...st.children].forEach((el,i) => el.classList.toggle("on", i < Math.min(n,10)));
-  const cyc = n % 10;
-  $("fidSt").innerHTML = `<div>${t("fid_you")} : <b>${n}</b></div><div>${t("fid_next")} ${n+1}</div>` +
+  $("fidSt").innerHTML = `<label style="display:grid;gap:6px;font-size:.85rem">${t("fid_ph")}<input id="fidPh" type="tel" inputmode="tel" placeholder="06 00 00 00 00" value="${ph}" style="padding:10px 12px;border:1px solid rgba(90,20,34,.25);border-radius:10px;font:inherit;background:#fff"></label>` +
+    (ph ? `<div>${t("fid_you")} : <b>${n}</b></div><div>${t("fid_next")} ${n+1}</div>` : `<div style="opacity:.8">${t("fid_enter")}</div>`) +
     (n >= 10 ? `<div class="fid-msg">${t("fid_code10")}</div>` : n >= 5 ? `<div class="fid-msg">${t("fid_gift5")}</div>` : "") +
     `<small style="opacity:.75">${t("fid_note")}</small>`;
 }
+document.addEventListener("change", e => { if (e.target.id === "fidPh") { store.set("sk_fidphone", e.target.value); renderFid(); } });
 function renderCart(){
   const s = totals();
   $("count").textContent = s.n;
@@ -1086,6 +1103,7 @@ $("dBody").addEventListener("change", e => {
 });
 $("dBody").addEventListener("input", e => {
   if (["c-name","c-phone","c-addr","c-promo"].includes(e.target.id)) store.set("sk_form", {name:$("c-name").value, phone:$("c-phone").value, addr:$("c-addr").value, promo:$("c-promo").value});
+  if (e.target.id === "c-phone" && normPhone(e.target.value)) { store.set("sk_fidphone", e.target.value); renderFid(); }
   if (e.target.id === "c-promo") { clearTimeout(window._pt); window._pt = setTimeout(() => { const pos = e.target.selectionStart; renderCart(); const el = $("c-promo"); el.focus(); try { el.setSelectionRange(pos, pos); } catch(_){} }, 450); }
 });
 ["railPrev","railNext"].forEach((id,i) => $(id).onclick = () => { const r = $("rail"); const dir = (i ? 1 : -1) * (document.documentElement.dir === "rtl" ? -1 : 1); r.scrollBy({left: dir * r.clientWidth * .8}); });
@@ -1105,12 +1123,12 @@ $("sendOrder").onclick = () => {
     (s.bdisc ? `\nPromo Black Friday (2 déos = 40 · 2 roll-on = 30 · 3 gels = 60 · 4 masques = 199 · routine coréenne = 499) : −${s.bdisc} DH` : "") +
     (s.pdisc ? `\nCode promo ${s.code} : −${s.pdisc} DH` : (f.promo ? `\nCode promo : ${f.promo} (non appliqué)` : "")) +
     `\nLivraison : ${s.free ? "offerte (dès 350 DH)" : s.del + " DH"} (${s.city==="agadir"?"Agadir":"Autre ville"})\nTotal : ${s.total} DH` +
-    `\nCarte fidélité : commande n°${fidCount() + (fidNew(lines) ? 1 : 0)}` +
+    `\nCarte fidélité : commande n°${(((normPhone(f.phone) && fidAll()[normPhone(f.phone)]) || {n:0}).n) + (fidNew(lines) ? 1 : 0)}` +
     `\n\nNom : ${f.name||""}\nTéléphone : ${f.phone||""}\nAdresse : ${f.addr||""}\n\nMerci de confirmer ma commande.`;
-  if (fidNew(lines)) { const d = fidData(); store.set("sk_fid", {n: d.n + 1, last: lines, t: Date.now()}); renderFid(); }
+  if (fidNew(lines)) { const ph = normPhone(f.phone), m = fidAll(), d = (ph && m[ph]) || {n:0}; if (ph) { m[ph] = {n: d.n + 1, last: lines, t: Date.now()}; store.set("sk_fidp", m); store.set("sk_fidphone", ph); } renderFid(); }
   window.open(wa(msg), "_blank", "noopener") || (location.href = wa(msg));
 };
-function fidNew(lines){ const d = fidData(); return !(d.last === lines && Date.now() - d.t < 6*3600*1000); }
+function fidNew(lines){ const ph = normPhone((store.get("sk_form")||{}).phone), d = (ph && fidAll()[ph]) || {}; return !(d.last === lines && Date.now() - d.t < 6*3600*1000); }
 
 $("demForm").addEventListener("submit", e => {
   e.preventDefault();
