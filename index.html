@@ -518,7 +518,7 @@ const SPRAY_IDS = ["dd1", "dd2", "dd3", "dd4", "dd5", "dd10", "dd11", "dd12", "d
 const BF_END = new Date("2026-12-16T00:00:00+01:00");
 const FID_CODE = "SOKARA10";
 /* Codes partenaires : code -> nom (ajouter une ligne par partenaire) */
-const PARTNERS = {"SK01": "Partenaire 1"};
+const PARTNERS = {"IKRAM": "Ikram"};
 const PROMO = {}; // id -> [old price, bundle price for 2 or 0]
 const OLDP = {"vp1": 154, "hs1": 45, "hs2": 45, "hs4": 45, "mh4": 45, "hc1": 29, "hc2": 29, "hc3": 29, "hc4": 29, "hc5": 29, "hc6": 29, "hc7": 29, "hc8": 45, "ng1": 29, "ng4": 29, "ng5": 45, "ng6": 45, "v1": 20, "v2": 20, "v3": 20, "v4": 20, "v5": 20, "v6": 20, "v7": 20, "v8": 20, "v9": 20, "lb1": 19, "lb3": 19, "lb4": 19, "lb5": 19};
 const BF_PACKS = {pc1:139, rv1:125, rv2:125, k7:199, k8:209, k2:199, kb1:159, k4:239, k5:229, kb18:249, fi1:199, fi2:219, fi3:199, fi4:199, fi5:499, p1:139, p2:139, p4:139, p3:129, p5:129};
@@ -1072,7 +1072,7 @@ function renderCart(){
     <label for="c-phone">${t("phone")}<input id="c-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 00 00 00 00" value="${(saved.phone||"").replace(/"/g,"&quot;")}"></label>
     <label for="c-addr">${t("addr")}<textarea id="c-addr">${(saved.addr||"").replace(/</g,"&lt;")}</textarea></label>
     <label for="c-promo">${t("promo")}<input id="c-promo" type="text" autocapitalize="characters" placeholder="SOKARA10" value="${(saved.promo||"").replace(/"/g,"&quot;")}"></label>
-    <label for="c-part">${t("part")}<input id="c-part" type="text" autocapitalize="characters" placeholder="SK01" value="${(saved.part || store.get("sk_part") || "").replace(/"/g,"&quot;")}"></label>
+    <label for="c-part">${t("part")}<input id="c-part" type="text" autocapitalize="characters" placeholder="IKRAM" value="${(saved.part || store.get("sk_part") || "").replace(/"/g,"&quot;")}"></label>
     ${partCode() ? `<div class="pmsg ok">${t("part_ok")}</div>` : ((saved.part||"").trim() ? `<div class="pmsg bad">${t("part_bad")}</div>` : "")}
     <div class="pmsg ${s.pstate==="ok"?"ok":"bad"}" id="pmsg">${s.pstate==="ok"?t("p_ok"):s.pstate==="need"?t("p_need"):s.pstate==="fid"?t("p_fid"):s.pstate==="bad"?t("p_bad"):""}</div>
     <div class="sum"><div><span>${t("sub")}</span><span>${s.subtotal} DH</span></div>
